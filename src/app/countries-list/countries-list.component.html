@@ -1,0 +1,14 @@
+<p>countries-list works!</p>
+<div >
+<ul style="list-style-type:square;" *ngFor="let product of products">
+    <li>{{product.name}}</li>
+  </ul>
+</div>
+
+<div style="text-align:center">
+    <select class="custom-select" required>
+        <option value="">Choose Country..</option>
+        <option *ngFor="let product of products">{{product.name}}</option>
+      </select>
+  </div>
+
