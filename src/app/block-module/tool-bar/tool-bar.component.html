@@ -15,15 +15,30 @@
     </p-toolbar> -->
     <nav class="navbar fixed-top">
         <a class="navbar-brand" href="#">Bug Report Tool</a>
-        <form [formGroup]="form">
-            <div class="form-group row">
+        <p-dialog header="Title" [(visible)]="display">
+            Content
+            <p-footer>
+                <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+                <button type="button" pButton icon="pi pi-times" (click)="display=false" label="No" class="ui-button-secondary"></button>
+            </p-footer>
+        </p-dialog>
 
-                <div class="col-sm-8">
+        <form [formGroup]="form">
+           
+            <div class="form-group row">
+               
+                <div class="col-sm-4">
                     <input class="form-control" formControlName="search" type="search" placeholder="Search"
                         aria-label="Search">
+
+                        <!-- <button type="button" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show"></button> -->
+
                 </div>
                 <div class="col-sm-4">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show"></button>
                 </div>
             </div>
         </form>

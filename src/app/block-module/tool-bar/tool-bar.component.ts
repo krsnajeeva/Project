@@ -8,6 +8,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ToolBarComponent implements OnInit {
   constructor() { }
+  display = false;
+
+    showDialog() {
+        this.display = true;
+    }
   form = new FormGroup({
     search: new FormControl(),
   })

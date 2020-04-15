@@ -9,10 +9,13 @@ export class SideNavComponent implements OnInit {
 
   constructor() { }
   visibleSidebar1;
+  
+  display = false;
 
+  showDialog() {
+      this.display = true;
+  }
   ngOnInit(): void {
   }
-  submit() {
 
-  }
 }

@@ -24,7 +24,8 @@ import { TableModule } from 'primeng/table';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { HelpDeskFeatureModule } from './feature-module/feature.module';
-
+import {DialogModule} from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,9 @@ import { HelpDeskFeatureModule } from './feature-module/feature.module';
     TableModule,
     CodeHighlighterModule,
     ContextMenuModule,
-    HelpDeskFeatureModule
+    HelpDeskFeatureModule,
+    DialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
