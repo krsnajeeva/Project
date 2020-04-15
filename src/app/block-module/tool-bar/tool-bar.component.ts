@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 
 @Component({
@@ -8,7 +8,7 @@ import {MenuItem} from 'primeng/api';
 })
 export class ToolBarComponent implements OnInit {
   items: MenuItem[];
-
+  @Input() childmessage;
   constructor() { }
     
   ngOnInit() {
@@ -18,4 +18,7 @@ export class ToolBarComponent implements OnInit {
       ];
   }
 
+  submit(){
+    alert(JSON.stringify(this.childmessage));
+  }
 }

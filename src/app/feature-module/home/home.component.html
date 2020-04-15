@@ -1,3 +1,5 @@
+<!-- <app-tool-bar [childmessage] = 'parentMessage'></app-tool-bar> -->
+
 <div class="text-center" style="height:50px">
     <!-- <h3>Help desh</h3> -->
 </div>
@@ -15,13 +17,19 @@
                                 <input type="text" pInputText formControlName="ticket_no" class="form-control" />
                             </div>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                             </div>
 
-                            <label  class="col-sm-2 col-form-label">Date Created:</label>
+                            <label class="col-sm-2 col-form-label">Status:</label>
                             <div class="col-sm-2">
-                                <input type="text" pInputText formControlName="date_created" class="form-control" />
+                                <select class="custom-select" formControlName="status" class="form-control">
+                                    <option value="">New</option>
+                                    <option value="1">Inprogress</option>
+                                    <option value="2">Resolved</option>
+                                    <option value="3">Reopen</option>
+                                </select>
                             </div>
+                            
                         </div>
 
                         <div class="form-group row">
@@ -35,25 +43,25 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <div *ngIf="f.date_created.touched && f.date_created.invalid" class="alert alert-danger">
-                                    <div *ngIf="f.date_created.errors.required">Date is required.</div>
-                                </div>
+                                <!-- <div *ngIf="f.status.touched && f.status.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.status.errors.required">Status is required.</div>
+                                </div> -->
                             </div>
                         </div>
 
 
                         <div class="form-group row">
-                            <label  class="col-sm-2 col-form-label">First Name:</label>
+                            <label class="col-sm-2 col-form-label">First Name:</label>
                             <div class="col-sm-2">
                                 <input type="text" pInputText formControlName="name" class="form-control" />
                             </div>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                             </div>
 
-                            <label  class="col-sm-2 col-form-label">Email ID:</label>
+                            <label class="col-sm-2 col-form-label">Date Created:</label>
                             <div class="col-sm-2">
-                                <input type="email" pInputText formControlName="email" class="form-control" />
+                                <input type="text" pInputText formControlName="date_created" class="form-control" />
                             </div>
                         </div>
 
@@ -69,35 +77,32 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
-                                    <div *ngIf="f.email.errors.required">Email is required.</div>
-                                    <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
-                                </div>
+                                <div *ngIf="f.date_created.touched && f.date_created.invalid"
+                                class="alert alert-danger">
+                                <div *ngIf="f.date_created.errors.required">Date is required.</div>
+                            </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Program:</label>
                             <div class="col-sm-2">
-                                <select class="custom-select" formControlName="program" class="form-control" >
+                                <!-- <p-dropdown [options]="genders" formControlName="gender"></p-dropdown> -->
+
+                                <select class="custom-select" formControlName="program" class="form-control">
                                     <option value="">Choose Program..</option>
                                     <option value="1">New</option>
                                 </select>
                             </div>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                             </div>
 
-                            <label class="col-sm-2 col-form-label">Status:</label>
+                            <label class="col-sm-2 col-form-label">Email ID:</label>
                             <div class="col-sm-2">
-                                <select class="custom-select" formControlName="status" class="form-control" >
-                                    <option value="">Choose Status..</option>
-                                    <option value="1">New</option>
-                                    <option value="2">Inprogress</option>
-                                    <option value="2">Resolved</option>
-                                    <option value="2">Reopen</option>
-                                </select>
+                                <input type="text" pInputText formControlName="email" class="form-control" />
                             </div>
+                            
                         </div>
 
                         <div class="form-group row">
@@ -111,9 +116,11 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <div *ngIf="f.status.touched && f.status.invalid" class="alert alert-danger">
-                                    <div *ngIf="f.status.errors.required">Status is required.</div>
+                                <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.email.errors.required">Email is required.</div>
+                                    <div *ngIf="f.email.errors.pattern">Please, enter valid email address.</div>
                                 </div>
+                               
                             </div>
                         </div>
 
@@ -122,10 +129,10 @@
                             <div class="col-sm-2">
                             </div>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                             </div>
 
-                            <label class="col-sm-2 col-form-label">Update Date:</label>
+                            <label class="col-sm-2 col-form-label">Date:</label>
                             <div class="col-sm-2">
                                 <input type="text" pInputText formControlName="update_date" class="form-control" />
                             </div>
@@ -140,14 +147,15 @@
 
                             <div class="col-sm-4">
                                 <div *ngIf="f.update_date.touched && f.update_date.invalid" class="alert alert-danger">
-                                    <div *ngIf="f.update_date.errors.required">Update Date is required.</div>
+                                    <div *ngIf="f.update_date.errors.required">Date is required.</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-8">
-                                <textarea rows="5" cols="50" pInputTextarea formControlName="notes" class="form-control" ></textarea>
+                                <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
+                                    class="form-control"></textarea>
                             </div>
                         </div>
 
@@ -170,11 +178,20 @@
                                         </ul>
                                     </ng-template>
                                 </p-fileUpload>
-
                             </div>
-                            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
-
                         </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-2">
+                                <button pButton class="btn btn-primary" type="submit" [disabled]="!form.valid"
+                                    label="Submit"></button>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
