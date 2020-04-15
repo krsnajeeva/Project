@@ -21,6 +21,10 @@ import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
 import { SideNavComponent } from './block-module/side-nav/side-nav.component';
 import {SidebarModule} from 'primeng/sidebar';
+import { ListViewComponent } from './feature-module/list-view/list-view.component';
+import { TableModule } from 'primeng/table';
+import { CodeHighlighterModule } from 'primeng/codehighlighter';
+import { ContextMenuModule } from 'primeng/contextmenu';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import {SidebarModule} from 'primeng/sidebar';
     HomeComponent,
     ToolBarComponent,
     SideNavComponent,
+    ListViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,10 @@ import {SidebarModule} from 'primeng/sidebar';
     FileUploadModule,
     ToastModule,
     CalendarModule,
-    SidebarModule
+    SidebarModule,
+    TableModule,
+    CodeHighlighterModule,
+    ContextMenuModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
