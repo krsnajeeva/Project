@@ -1,17 +1,24 @@
 <p-table [value]="sampleData" [paginator]="true" [rows]="10" [responsive]="true">
     <ng-template pTemplate="caption">
         Issue Status
+        <div style="text-align: right">        
+            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (onChange)="onYearChange($event, sampleData)" style="width:auto">
+        </div>
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Today Tickets</th>
+            <!-- <th *ngFor="let col of columns">
+                {{col.header}}
+            </th> -->
+            
+            <th>Tickets Number</th>
             <th>Ticket Creation Date</th>
             <th>Staff Name</th>
             <th>Staff Email</th>
             <th>Program </th>
             <th>Status <p-sortIcon></p-sortIcon>
             <th>Updated Date </th>
-            
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>

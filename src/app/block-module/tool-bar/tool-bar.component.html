@@ -30,20 +30,20 @@
                                         <div class="col-sm-2">
                                             <!-- <input type="text" pInputText formControlName="ticket_no"
                                                 class="form-control" /> -->
-                                                <label class="col-form-label">HD#0001</label>
+                                                <label class="ticket col-form-label">HD#0001</label>
 
                                         </div>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                         </div>
 
                                         <label class="col-sm-2 col-form-label">Status:</label>
-                                        <div class="col-sm-2">
-                                            <select class="custom-select" formControlName="status" class="form-control">
-                                                <option value="">New</option>
-                                                <option value="1">Inprogress</option>
-                                                <option value="2">Resolved</option>
-                                                <option value="3">Reopen</option>
+                                        <div class="col-sm-4">
+                                            <select class="select form-control" formControlName="status" >
+                                                <option selected>New</option>
+                                                <option >Inprogress</option>
+                                                <option >Resolved</option>
+                                                <option >Reopen</option>
                                             </select>
                                         </div>
 
@@ -70,17 +70,14 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">First Name:</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" pInputText formControlName="name" class="form-control" />
-                                        </div>
+                                            <label class="col-sm-2 col-form-label">sample</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                         </div>
 
                                         <label class="col-sm-2 col-form-label">Date Created:</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" pInputText formControlName="date_created"
-                                                class="form-control" />
+                                        <div class="col-sm-4">
+                                            <label >03/14/20</label>
                                         </div>
                                     </div>
 
@@ -105,23 +102,23 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Program:</label>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <!-- <p-dropdown [options]="genders" formControlName="gender"></p-dropdown> -->
 
                                             <select class="custom-select" formControlName="program"
                                                 class="form-control">
-                                                <option value="">Choose Program..</option>
+                                                <option value="">Choose..</option>
                                                 <option value="1">New</option>
                                             </select>
                                         </div>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-1">
                                         </div>
 
                                         <label class="col-sm-2 col-form-label">Email ID:</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" pInputText formControlName="email"
-                                                class="form-control" />
+                                        <div class="col-sm-4">
+                                            <label class="col-form-label">sample@email.com</label>
+
                                         </div>
 
                                     </div>
@@ -152,11 +149,11 @@
                                         <div class="col-sm-2">
                                         </div>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                         </div>
 
                                         <label class="col-sm-2 col-form-label">Date:</label>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <input type="text" pInputText formControlName="update_date"
                                                 class="form-control" />
                                         </div>
