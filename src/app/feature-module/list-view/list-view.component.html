@@ -4,21 +4,25 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Track ID</th>
-            <th>Title</th>
-            <th>Created Date</th>
-            <th>Last Update</th>
+            <th>Today Tickets</th>
+            <th>Ticket Creation Date</th>
+            <th>Staff Name</th>
+            <th>Staff Email</th>
+            <th>Program </th>
             <th>Status <p-sortIcon></p-sortIcon>
-            </th>
+            <th>Updated Date </th>
+            
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
         <tr>
-            <td>{{data.id}}</td>
-            <td>{{data.title}}</td>
+            <td>{{data.t_no}}</td>
             <td>{{data.createdData}}</td>
-            <td>{{data.lasUpdate}}</td>
+            <td>{{data.staff_name}}</td>
+            <td>{{data.staff_mail}}</td>
+            <td>{{data.program}}</td>
             <td>{{data.status}}</td>
+            <td>{{data.updated_date}}</td>
         </tr>
     </ng-template>
 </p-table>
