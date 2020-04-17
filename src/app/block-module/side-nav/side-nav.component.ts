@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class SideNavComponent implements OnInit {
 
   constructor() { }
-  visibleSidebar1;
+  visibleSidebar1 = true;
   
-  display = false;
+  display = true;
 
   showDialog() {
       this.display = true;

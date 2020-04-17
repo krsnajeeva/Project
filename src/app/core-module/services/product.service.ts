@@ -9,9 +9,9 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  baseurl: string = "https://restcountries.eu/rest/v2/name/united";
+  baseurl: string = "http://localhost:1337/api";
 
   getAllProducts(){
-    return this.http.get<ProductModel[]>(this.baseurl);
+    return this.http.get<ProductModel[]>(`${this.baseurl}/name`);
   }
 }

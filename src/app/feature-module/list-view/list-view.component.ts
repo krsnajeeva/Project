@@ -8,6 +8,12 @@ import { Component,OnInit } from '@angular/core';
 export class HelpDeskListViewComponent {
     // cols: any[];
 
+    display = false;
+
+    showDialog() {
+        this.display = true;
+    }
+    
     sampleData = [
         { t_no: '112', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'New' ,updated_date:'04/16/2020'},
         { t_no: '121', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'In progress',updated_date:'04/16/2020' },

@@ -19,14 +19,14 @@ export class ToolBarComponent implements OnInit {
 
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   form = new FormGroup({
-    ticket_no: new FormControl('', [Validators.required]),
-    date_created: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
-    program: new FormControl('', [Validators.required]),
-    // status: new FormControl('', [Validators.required]),
-    notes: new FormControl('', [Validators.required]),
-    update_date: new FormControl('', [Validators.required]),
+    ticket_no: new FormControl('', ),
+    date_created: new FormControl('', ),
+    name: new FormControl('', ),
+    email: new FormControl('', [ Validators.pattern(this.emailPattern)]),
+    program: new FormControl('', ),
+    status: new FormControl('', ),
+    notes: new FormControl('', ),
+    update_date: new FormControl('', ),
     search: new FormControl(),
 
   });
