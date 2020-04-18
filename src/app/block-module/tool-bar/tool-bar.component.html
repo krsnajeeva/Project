@@ -15,10 +15,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Ticket No:</label>
                                         <div class="col-sm-2">
-                                            <!-- <input type="text" pInputText formControlName="ticket_no"
-                                                class="form-control" /> -->
                                             <label class="ticket col-form-label">HD#0001</label>
-
                                         </div>
 
                                         <div class="col-sm-2">
@@ -38,19 +35,14 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-4">
-                                            <div *ngIf="f.ticket_no.touched && f.ticket_no.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.ticket_no.errors.required">Ticket_No is required.</div>
-                                            </div>
+                                            
                                         </div>
 
                                         <div class="col-sm-4">
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <!-- <div *ngIf="f.status.touched && f.status.invalid" class="alert alert-danger">
-                                                <div *ngIf="f.status.errors.required">Status is required.</div>
-                                            </div> -->
+                                            
                                         </div>
                                     </div>
 
@@ -70,20 +62,14 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-4">
-                                            <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
-                                                <div *ngIf="f.name.errors.required">Name is required.</div>
-                                                <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
-                                            </div>
+                                           
                                         </div>
 
                                         <div class="col-sm-4">
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <div *ngIf="f.date_created.touched && f.date_created.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.date_created.errors.required">Date is required.</div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
 
@@ -95,7 +81,7 @@
                                             <select class="custom-select" formControlName="program"
                                                 class="form-control">
                                                 <option value="">Choose..</option>
-                                                <option value="1">New</option>
+                                                <option value="new">New</option>
                                             </select>
                                         </div>
 
@@ -105,7 +91,6 @@
                                         <label class="col-sm-2 col-form-label">Email ID:</label>
                                         <div class="col-sm-4">
                                             <label class="col-form-label">sample@email.com</label>
-
                                         </div>
 
                                     </div>
@@ -122,11 +107,11 @@
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                                            <!-- <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
                                                 <div *ngIf="f.email.errors.required">Email is required.</div>
                                                 <div *ngIf="f.email.errors.pattern">Please, enter valid email address.
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         </div>
                                     </div>
@@ -141,8 +126,10 @@
 
                                         <label class="col-sm-2 col-form-label">Date:</label>
                                         <div class="col-sm-4">
-                                            <input type="text" pInputText formControlName="update_date"
-                                                class="form-control" />
+                                            <label>03/14/20</label>
+
+                                            <!-- <input type="text" pInputText formControlName="update_date"
+                                                class="form-control" /> -->
                                         </div>
                                     </div>
 
@@ -154,10 +141,7 @@
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <div *ngIf="f.update_date.touched && f.update_date.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.update_date.errors.required">Date is required.</div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
 
@@ -210,9 +194,10 @@
             </div>
 
             <p-footer>
-                <!-- <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button> -->
-                <button pButton class="btn btn-primary" type="submit" [disabled]="!form.valid" label="Submit"></button>
-                <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Cancel"
+                <button type="button" pButton icon="pi pi-check" [disabled]="!form.valid" (click)="submit()" label="Submit"></button>
+                <!-- <button pButton class="btn btn-primary" type="submit" [disabled]="!form.valid"
+                label="Submit"></button>      -->
+                    <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Cancel"
                     class="ui-button-secondary"></button>
             </p-footer>
         </p-dialog>

@@ -16,18 +16,18 @@ export class ToolBarComponent implements OnInit {
   
   parentMessage: any
   genders: SelectItem[];
-
+  search: any
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   form = new FormGroup({
-    ticket_no: new FormControl('', ),
-    date_created: new FormControl('', ),
-    name: new FormControl('', ),
-    email: new FormControl('', [ Validators.pattern(this.emailPattern)]),
-    program: new FormControl('', ),
-    status: new FormControl('', ),
-    notes: new FormControl('', ),
-    update_date: new FormControl('', ),
-    search: new FormControl(),
+    ticket_no: new FormControl('HD#0001', ),
+    date_created: new FormControl('03/14/20', ),
+    name: new FormControl('sample', ),
+    email: new FormControl('sample@gmail.com', [ Validators.pattern(this.emailPattern)]),
+    program: new FormControl('',Validators.required ),
+    status: new FormControl('new', ),
+    notes: new FormControl('',Validators.required ),
+    update_date: new FormControl('03/14/20', ),
+    // search: new FormControl(),
 
   });
 
