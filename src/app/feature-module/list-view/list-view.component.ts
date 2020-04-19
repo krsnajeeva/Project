@@ -1,50 +1,75 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../core-module/services/product.service';
+import { ProductModel } from '../../core-module/services/ProductModel';
 
 @Component({
     selector: 'app-list-view',
     templateUrl: './list-view.component.html',
     styleUrls: ['./list-view.component.scss']
 })
-export class HelpDeskListViewComponent {
+export class HelpDeskListViewComponent implements OnInit {
     // cols: any[];
 
     display = false;
+    datalist: ProductModel[];
+    data: [];
+    cols: any [];
+    status: any [];
 
+    constructor(private productService: ProductService) { }
+
+    
     showDialog() {
         this.display = true;
     }
+
+    ngOnInit() {
+        this.getHelpdesk();
+        this.cols = [
+            { field: 'ticketNum', header: 'Tickets Number' },
+            { field: 'createdDate', header: 'Ticket Creation Date' },
+            { field: 'staffName', header: 'Staff Name' },
+            { field: 'email', header: 'Staff Email' },
+            { field: 'programID', header: 'Program' },
+            { field: 'status', header: 'Status' },
+            { field: 'updatedDate', header: 'Updated Date' },
+            // { field: 'action', header: 'Action' }
+        ];
+        this.status = [
+            { label: 'All', value: null },
+            { label: 'New', value: 'New' },
+            { label: 'InProgress', value: 'InProgress' },
+            { label: 'Resolved', value: 'Resolved' },
+            { label: 'Reopened', value: 'Reopened' },
+            { label: 'Closed', value: 'Closed' }
+        ];
+
+    }
+
+    getHelpdesk(): void {
+        this.productService.getHelpdesk().subscribe(data => {
+            this.datalist = data;
+            console.log("datdadadada",data)
+        });
+    };
     
-    sampleData = [
-        { t_no: '112', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'New' ,updated_date:'04/16/2020'},
-        { t_no: '121', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'In progress',updated_date:'04/16/2020' },
-        { t_no: 'e3323', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Reopen' ,updated_date:'04/16/2020'},
-        { t_no: '4121ss', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Duplicated' ,updated_date:'04/16/2020'},
-        { t_no: 'dsasda1', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration',status: 'Fixed',updated_date:'04/16/2020' },
-        { t_no: '6', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'New' ,updated_date:'04/16/2020'},
-        { t_no: '7', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'In progress' ,updated_date:'04/16/2020'},
-        { t_no: '8', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Reopen' ,updated_date:'04/16/2020'},
-        { t_no: '9', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Duplicated' ,updated_date:'04/16/2020'},
-        { t_no: '10', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Fixed',updated_date:'04/16/2020' },
-        { t_no: '11', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'New' ,updated_date:'04/16/2020'},
-        { t_no: '12', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'In progress',updated_date:'04/16/2020' },
-        { t_no: '13', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Reopen' ,updated_date:'04/16/2020'},
-        { t_no: '14', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Duplicated' ,updated_date:'04/16/2020'},
-        { t_no: '15', createdData: '04/15/2020', staff_name: 'sample', staff_mail: 'sample@gmail.com',program: 'Reintgration', status: 'Fixed' ,updated_date:'04/16/2020'},
-    ];
+    getHelpdeskId(id): void {
+        this.productService.getHelpdeskId(id).subscribe(data=>{
+            console.log("asaaasas",data);
+        // alert(JSON.stringify(data))
 
-    cols = [
-        { field: 't_no', header: 'Tickets Number' },
-        { field: 'create_date', header: 'Ticket Creation Date' },
-        { field: 's_name', header: 'Staff Name' },
-        { field: 's_email', header: 'Staff Email' },
-        { field: 'prohram', header: 'Program' },
-        { field: 'status', header: 'Status' },
-        { field: 'update_date', header: 'Updated Date' }
-    ];
+        });
+    };
 
-    onYearChange(event, sampleData) {
-       
-        sampleData.filter(event.value, 'status', 'status');
+    updateform(data: ProductModel) {
+        // this.getHelpdeskId(data.id)
+        this.productService.getHelpdeskId(data.id).subscribe(krsna=>{
+            console.log("krsna",krsna)
+        })
+        this.display = true;
+        // alert(data.id)
+        console.log("cusid", JSON.stringify(data.id))
+        console.log("cusid", data.staffName)
     }
 }
 

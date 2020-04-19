@@ -9,17 +9,24 @@ import { ProductService } from '../../core-module/services/product.service';
 export class CountriesListComponent implements OnInit {
 
   products = []
-
+  sampledata = []
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.getAllProducts();
+    this.getHelpdesk();
   }
 
   getAllProducts(): void {
-    this.productService.getAllProducts().subscribe(data=>{
+    this.productService.getAllProducts().subscribe(data => {
       this.products = data;
+      console.log(data)
     });
   };
 
+  getHelpdesk(): void {
+    this.productService.getHelpdesk().subscribe(data => {
+      this.sampledata = data;
+    });
+  };
 }

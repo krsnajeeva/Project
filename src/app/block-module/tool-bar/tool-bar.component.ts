@@ -50,3 +50,9 @@ export class ToolBarComponent implements OnInit {
     console.log(this.form.value);
   }
 }
+
+
+
+// intant
+
+// interpolision

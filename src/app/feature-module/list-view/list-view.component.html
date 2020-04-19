@@ -1,38 +1,80 @@
-<div>
-    
-    <label>Search Filters</label>
-    <button type="button" (click)="showDialog()" pButton icon="pi pi-plus" label="Create"
-                        class="ui-button-rounded"></button>
-                        
-</div>
-<p-table [value]="sampleData" [paginator]="true" [rows]="10" [responsive]="true">
+
+<p-dialog header="Create Ticket" [(visible)]="display" [baseZIndex]="10000">
+<app-home></app-home>
+    <p-footer>
+        <!-- <button type="button" pButton icon="pi pi-check" [disabled]="!form.valid" (click)="submit()" label="Submit"></button>
+        <button pButton class="btn btn-primary" type="submit" [disabled]="!form.valid"
+        label="Submit"></button>      -->
+            <!-- <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Cancel"
+            class="ui-button-secondary"></button> -->
+    </p-footer>
+</p-dialog>
+
+
+<p-table  #dt [value]="datalist" [columns]="cols" [paginator]="true" [rows]="10" [responsive]="true">
     <ng-template pTemplate="caption">
         Issue Status
+
         <div style="text-align: right">        
             <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" pInputText size="50" placeholder="Global Filter" (onChange)="onYearChange($event, sampleData)" style="width:auto">
+            <input type="text" pInputText size="50" placeholder="Global Filter" style="width:auto">
         </div>
+        
+        <div style="text-align: left">        
+            <button type="button" (click)="showDialog()" pButton icon="pi pi-plus" label="Create"
+            class="ui-button-rounded"></button>
+        </div>
+
+        
     </ng-template>
-    <ng-template pTemplate="header">
+
+    <ng-template pTemplate="header" let-columns>
         <tr> 
-            <th>Tickets Number</th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+            <!-- <th>Tickets Number</th>
             <th>Ticket Creation Date</th>
             <th>Staff Name</th>
             <th>Staff Email</th>
             <th>Program </th>
             <th>Status <p-sortIcon></p-sortIcon>
-            <th>Updated Date </th>
+            <th>Updated Date</th> -->
+            <th>Action</th> 
+        </tr>
+        <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <input style="width: 150px;" *ngSwitchCase="'ticketNum'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                <input style="width: 150px;" *ngSwitchCase="'staffName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                <p-dropdown *ngSwitchCase="'status'" [options]="status" [styleClass]="{'width':'10%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+                <!-- <p-dropdown *ngSwitchCase="'brand'" [options]="brands" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+
+                <!-- <div *ngSwitchCase="'year'">
+                    Value > {{yearFilter}}
+                    <i class="pi pi-times" (click)="yearFilter=null;dt.filter(null, col.field, col.filterMatchMode)" style="cursor:pointer" *ngIf="yearFilter"></i>
+                    <p-slider [style]="{'width':'100%','margin-top':'8px'}" [(ngModel)]="yearFilter" [min]="1970" [max]="2010" (onChange)="onYearChange($event, dt)"></p-slider>
+                </div>
+                <p-multiSelect *ngSwitchCase="'color'" [options]="colors" defaultLabel="All Colors" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                <input *ngSwitchCase="'price'" pInputText type="text" placeholder="Custom - Greater Than" (input)="dt.filter($event.target.value, col.field, 'custom')"> -->
+            </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-data>
-        <tr>
-            <td>{{data.t_no}}</td>
-            <td>{{data.createdData}}</td>
-            <td>{{data.staff_name}}</td>
-            <td>{{data.staff_mail}}</td>
-            <td>{{data.program}}</td>
+
+    <ng-template pTemplate="body" let-data let-columns="columns">
+        <tr [pSelectableRow]="data">
+            <td *ngFor="let col of columns">
+                {{data[col.field]}}
+            </td>
+            <!-- <td>{{data.ticketNum}}</td>
+            <td>{{data.createdDate}}</td>
+            <td>{{data.staffName}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.programID}}</td>
             <td>{{data.status}}</td>
-            <td>{{data.updated_date}}</td>
+            <td>{{data.updatedDate}}</td> -->
+            <td>  
+                <button (click)="updateform(data)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>  
+            </td>  
         </tr>
     </ng-template>
 </p-table>

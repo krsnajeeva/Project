@@ -7,12 +7,15 @@
 .ui-button-danger{
   margin-left: 5px;
 }
-.fixed-top{
-  min-height: 10%;
-  position: fixed;
-}
+/* .fixed-top{ */
+  /* margin-top: 10%; */
+  /* height: 10%; */
+  /* position: fixed; */
+/* } */
 .navbar{
+  height: 10%;
   background-color: #e3f2fd;
+  text-align: center;
 }
 .ticket{
   background-color: #6699cc;

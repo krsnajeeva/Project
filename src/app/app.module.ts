@@ -8,7 +8,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core-module/app.component';
 import { CountriesListComponent } from './feature-module/countries-list/countries-list.component';
-import { HomeComponent } from './feature-module/home/home.component';
 import { ToolBarComponent } from './block-module/tool-bar/tool-bar.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
@@ -26,11 +25,13 @@ import { ContextMenuModule } from 'primeng/contextmenu';
 import { HelpDeskFeatureModule } from './feature-module/feature.module';
 import {DialogModule} from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {CardModule} from 'primeng/card';
+import {AccordionModule} from 'primeng/accordion';  
+
 @NgModule({
   declarations: [
     AppComponent,
     CountriesListComponent,
-    HomeComponent,
     ToolBarComponent,
     SideNavComponent
   ],
@@ -55,7 +56,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContextMenuModule,
     HelpDeskFeatureModule,
     DialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CardModule,
+    AccordionModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
