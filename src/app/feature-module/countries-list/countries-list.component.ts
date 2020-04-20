@@ -18,7 +18,7 @@ export class CountriesListComponent implements OnInit {
   }
 
   getAllProducts(): void {
-    this.productService.getAllProducts().subscribe(data => {
+    this.productService.getAllPrograms().subscribe(data => {
       this.products = data;
       console.log(data)
     });

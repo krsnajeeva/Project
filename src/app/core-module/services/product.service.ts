@@ -11,7 +11,7 @@ export class ProductService {
 
   baseurl: string = "http://localhost:1337/api/name";
 
-  getAllProducts() {
+  getAllPrograms() {
     return this.http.get<ProductModel[]>(`${this.baseurl}`);
   }
 

@@ -19,10 +19,12 @@
                             <label class="col-sm-2 col-form-label">Status:</label>
                             <div class="col-sm-4">
                                 <select class="select form-control" formControlName="status">
-                                    <option selected>New</option>
+                                    <!-- <option selected>New</option>
                                     <option>Inprogress</option>
                                     <option>Resolved</option>
-                                    <option>Reopen</option>
+                                    <option>Reopen</option> -->
+                                    <option *ngFor="let statuses of status">{{statuses.label}}</option>
+
                                 </select>
                             </div>
 
@@ -44,7 +46,7 @@
 
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">First Name:</label>
-                            <label class="col-sm-2 col-form-label">sample</label>
+                            <label class="col-sm-2 col-form-label">Karthi</label>
 
                             <div class="col-sm-2">
                             </div>
@@ -71,11 +73,12 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Program:</label>
                             <div class="col-sm-3">
-                                <!-- <p-dropdown [options]="genders" formControlName="gender"></p-dropdown> -->
+                                <!-- <p-dropdown [options]="namelist" [(ngModel)]="namelist" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown> -->
 
-                                <select class="custom-select" formControlName="program" class="form-control">
+                                <select class="custom-select" formControlName="programID" class="form-control">
                                     <option value="">Choose..</option>
-                                    <option value="new">New</option>
+                                    <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
+                                    <!-- <option value="new">New</option> -->
                                 </select>
                             </div>
 
@@ -84,15 +87,15 @@
 
                             <label class="col-sm-2 col-form-label">Email ID:</label>
                             <div class="col-sm-4">
-                                <label class="col-form-label">sample@email.com</label>
+                                <label class="col-form-label">karthi@email.com</label>
                             </div>
 
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <div *ngIf="f.program.touched && f.program.invalid" class="alert alert-danger">
-                                    <div *ngIf="f.program.errors.required">Program is required.</div>
+                                <div *ngIf="f.programID.touched && f.programID.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.programID.errors.required">Program is required.</div>
                                 </div>
                             </div>
 

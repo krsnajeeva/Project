@@ -17,7 +17,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
-import { SideNavComponent } from './block-module/side-nav/side-nav.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
@@ -27,13 +26,13 @@ import {DialogModule} from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CardModule} from 'primeng/card';
 import {AccordionModule} from 'primeng/accordion';  
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     CountriesListComponent,
     ToolBarComponent,
-    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +58,7 @@ import {AccordionModule} from 'primeng/accordion';
     BrowserAnimationsModule,
     CardModule,
     AccordionModule,
-    
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

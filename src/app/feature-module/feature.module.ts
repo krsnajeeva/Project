@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { HelpDeskListViewComponent } from './list-view/list-view.component';
 import { TableModule } from 'primeng/table';
-import { HomeComponent } from './home/home.component';
+import { FormComponent } from './form/form.component';
 import {DialogModule} from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
@@ -12,12 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CardModule} from 'primeng/card';
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
     declarations: [
         HelpDeskListViewComponent,
-        HomeComponent
+        FormComponent
     ],
     imports: [
         TableModule,
@@ -30,11 +31,12 @@ import { BrowserModule } from '@angular/platform-browser';
         BrowserAnimationsModule,
         CardModule,
         ReactiveFormsModule,
-        BrowserModule
+        BrowserModule,
+        FormsModule
     ],
     exports: [
         HelpDeskListViewComponent,
-        HomeComponent
+        FormComponent
     ],
     providers: [
         TableModule

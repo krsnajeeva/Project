@@ -10,21 +10,16 @@ var routes = function () {
             conn.connect().then(function () {
                 var transaction = new sql.Transaction(conn);
                 transaction.begin().then(function () {
-                    var request = new sql.Request(transaction);
-                    request.input("id", sql.Int, _productID)
-                    request.execute("sp_FindOneHelpDesk").then(function () {
-                        transaction.commit().then(function (recordSet) {
-                            conn.close();
-                            res.status(200).send(req.body);
-                            // res.status(200).json("id:" + _productID);
-                        }).catch(function (err) {
-                            conn.close();
-                            res.status(400).send("Error while Deleting data");
-                        });
-                    }).catch(function (err) {
+                    var sqlQuery = "SELECT * FROM Helpdesk WHERE id = "+_productID;
+                    var req = new sql.Request(conn);
+                    req.query(sqlQuery).then(function (recordset) {
+                        res.json(recordset.recordset);
                         conn.close();
-                        res.status(400).send("Error while procedure");
-                    });
+                    })
+                        .catch(function (err) {
+                            conn.close();
+                            res.status(400).send("Error while data");
+                        });
                 }).catch(function (err) {
                     conn.close();
                     res.status(400).send("Error while connecting");
