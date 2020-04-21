@@ -1,21 +1,27 @@
 <p-table #dt [value]="datalist" [columns]="cols" styleClass="ui-table-customers" [paginator]="true" [rows]="10"
     [responsive]="true">
-    <ng-template pTemplate="caption">
-        Issue Status
+
+    <ng-template pTemplate="caption" let-columns>
 
         <div style="text-align: right">
             <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                 placeholder="Global Search" />
         </div>
+        <div class="leftcontainer">
+            <label class="label-container" >Tickets Number :</label>
+            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                placeholder="Global Search" />
+        </div>
 
-        <div style="text-align: left">
+        <div class="leftcontainer">
             <button type="button" (click)="showDialog()" pButton icon="pi pi-plus" label="Create"
                 class="ui-button-rounded"></button>
         </div>
-
-
+ 
     </ng-template>
+
+  
 
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -47,7 +53,7 @@
             <td>{{data.createdDate}}</td>
             <td>{{data.staffName}}</td>
             <td>{{data.email}}</td>
-            <td>{{data.programID}}</td>
+            <td>{{data.name}}</td>
             <td>
                 <span [class]="'customer-badge status-' + data.status">{{data.status}}</span>
             </td>
@@ -61,5 +67,5 @@
 </p-table>
 
 <p-dialog header="Create Ticket" [(visible)]="display" [baseZIndex]="10000">
-    <app-form></app-form>
+    <app-form [helpDeskForm]="helpdeskprogram" *ngIf="display"></app-form>
 </p-dialog>

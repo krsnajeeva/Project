@@ -1,25 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../core-module/services/product.service';
 import { ProductModel } from '../../core-module/services/ProductModel';
+import { HelpDeskFormClass } from '../form/form';
+import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
     selector: 'app-list-view',
     templateUrl: './list-view.component.html',
-    styleUrls: ['./list-view.component.scss']
+    styleUrls: ['./list-view.component.scss'],
 })
 export class HelpDeskListViewComponent implements OnInit {
     // cols: any[];
+    today= new Date();
+    jstoday = '';
 
     display = false;
     datalist: ProductModel[];
     data: [];
     cols: any [];
     status: any [];
+    helpdeskprogram : HelpDeskFormClass = new HelpDeskFormClass();
 
-    constructor(private productService: ProductService) { }
+    constructor(private productService: ProductService, private _router:Router) { 
+        this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
+
+        console.log('dateddd',this.jstoday);
+        
+    }
 
     
     showDialog() {
+        this.helpdeskprogram = new HelpDeskFormClass();
+        // this._router.navigate(['/Home']);
         this.display = true;
     }
 
@@ -27,7 +40,7 @@ export class HelpDeskListViewComponent implements OnInit {
         this.getHelpdesk();
         this.cols = [
             { field: 'ticketNum', header: 'Tickets Number' },
-            { field: 'createdDate', header: 'Ticket Creation Date' },
+            { field: 'createdDate', header: 'Ticket Created Date' },
             { field: 'staffName', header: 'Staff Name' },
             { field: 'email', header: 'Staff Email' },
             { field: 'programID', header: 'Program' },
@@ -63,8 +76,9 @@ export class HelpDeskListViewComponent implements OnInit {
 
     updateform(data: ProductModel) {
         // this.getHelpdeskId(data.id)
-        this.productService.getHelpdeskId(data.id).subscribe(krsna=>{
-            console.log("krsna",krsna)
+        this.productService.getHelpdeskId(data.id).subscribe(data=>{
+            this.helpdeskprogram = data[0];
+            console.log("krsna",this.helpdeskprogram)
         })
         this.display = true;
         // alert(data.id)

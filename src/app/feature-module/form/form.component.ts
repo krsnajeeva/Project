@@ -1,19 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { ProductService } from '../../core-module/services/product.service';
 import { Router } from "@angular/router";
+import { HelpDeskFormClass } from "./form";
+import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
+  inputs: ['helpDeskForm']
 })
 export class FormComponent implements OnInit {
   parentMessage: any
   genders: SelectItem[];
   status: any [];
   display = false;
+  button: any [];
+  today= new Date();
+  jstoday = '';
+
+  @Input() helpDeskForm: HelpDeskFormClass = new HelpDeskFormClass();
 
   showDialog() {
       this.display = true;
@@ -27,7 +36,7 @@ export class FormComponent implements OnInit {
     emailId: new FormControl('Jan@gmail.com', [ Validators.pattern(this.emailPattern)]),
     programID: new FormControl('',Validators.required ),
     status: new FormControl('', ),
-    notes: new FormControl('',Validators.required ),
+    notesformcontrol: new FormControl('',Validators.compose([null, Validators.required]) ),
     updatedDate: new FormControl('03/14/20', )
 
     // ticketNum: new FormControl('HD#0001', ),
@@ -46,6 +55,8 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.genders = [{ label: 'Select Gender', value: '' }, { label: 'Male', value: 'Male' }, { label: 'Female', value: 'Female' }];
     this.getAllPrograms();
+    
+    this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
 
     this.status = [
       // { label: 'All', value: null },
@@ -55,6 +66,16 @@ export class FormComponent implements OnInit {
       { label: 'Reopened', value: 'Reopened' },
       { label: 'Closed', value: 'Closed' }
   ];
+
+  this.button = [
+    { label: 'Submit', value: 'New' },
+    { label: 'Open', value: 'InProgress' },
+    { label: 'Resolve', value: 'Resolved' },
+    { label: 'Reopen', value: 'Reopened' },
+    { label: 'Assign', value: 'Reopened' },
+    { label: 'Close', value: 'Closed' }
+];
+
   }
 
   getAllPrograms(): void {
@@ -72,15 +93,15 @@ export class FormComponent implements OnInit {
   }
 
   submit() {
-
-    if(this.form.valid){
-      this.productService.addHelpdesk(this.form.value)
-      .subscribe( data => {
-        console.log("issueadded",data);
-        this.router.navigate(['']);
-      });
-    }
-    alert(JSON.stringify(this.form.value));
+    console.log("Form inputs",this.helpDeskForm);
+    // if(this.form.valid){
+    //   this.productService.addHelpdesk(this.form.value)
+    //   .subscribe( data => {
+    //     console.log("issueadded",data);
+    //     this.router.navigate(['']);
+    //   });
+    // }
+    alert(JSON.stringify(this.helpDeskForm));
     this.parentMessage = JSON.stringify(this.form.value);
     console.log(this.form.value);
   }

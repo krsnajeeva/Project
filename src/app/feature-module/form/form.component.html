@@ -8,9 +8,9 @@
                     <form [formGroup]="form" (ngSubmit)="submit()">
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Ticket No:</label>
+                            <label class="col-sm-2 col-form-label">Tickets Number:</label>
                             <div class="col-sm-2">
-                                <label class="ticket col-form-label">HD#0001</label>
+                                <label name="ticketNum" formControlName="ticketNum" [(ngModel)]="helpDeskForm.ticketNum">{{helpDeskForm.ticketNum}} HD#0001</label>
                             </div>
 
                             <div class="col-sm-2">
@@ -18,76 +18,39 @@
 
                             <label class="col-sm-2 col-form-label">Status:</label>
                             <div class="col-sm-4">
-                                <select class="select form-control" formControlName="status">
-                                    <!-- <option selected>New</option>
-                                    <option>Inprogress</option>
-                                    <option>Resolved</option>
-                                    <option>Reopen</option> -->
-                                    <option *ngFor="let statuses of status">{{statuses.label}}</option>
-
-                                </select>
+                                <label class="col-sm-4 col-form-label">{{helpDeskForm.status}}</label>
                             </div>
 
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-4">
-
-                            </div>
-
-                            <div class="col-sm-4">
-                            </div>
-
-                            <div class="col-sm-4">
-
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">First Name:</label>
-                            <label class="col-sm-2 col-form-label">Karthi</label>
+                            <label class="col-sm-2 col-form-label">Staff Name:</label>
+                            <label class="col-sm-2 col-form-label">{{helpDeskForm.staffName}}</label>
 
                             <div class="col-sm-2">
                             </div>
 
-                            <label class="col-sm-2 col-form-label">Date Created:</label>
+                            <label class="col-sm-2 col-form-label">Ticket Created Date:</label>
                             <div class="col-sm-4">
-                                <label>03/14/20</label>
+                                <label>{{helpDeskForm.createdDate}} {{jstoday}}</label>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-4">
-
-                            </div>
-
-                            <div class="col-sm-4">
-                            </div>
-
-                            <div class="col-sm-4">
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Program:</label>
-                            <div class="col-sm-3">
-                                <!-- <p-dropdown [options]="namelist" [(ngModel)]="namelist" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown> -->
-
+                            <label class="col-sm-2 col-form-label">Program * :</label>
+                            <div class="col-sm-3">                                
                                 <select class="custom-select" formControlName="programID" class="form-control">
                                     <option value="">Choose..</option>
                                     <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
-                                    <!-- <option value="new">New</option> -->
                                 </select>
                             </div>
 
                             <div class="col-sm-1">
                             </div>
 
-                            <label class="col-sm-2 col-form-label">Email ID:</label>
+                            <label class="col-sm-2 col-form-label">Staff Email:</label>
                             <div class="col-sm-4">
-                                <label class="col-form-label">karthi@email.com</label>
+                                <label>{{helpDeskForm.email}}</label>
                             </div>
 
                         </div>
@@ -95,7 +58,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <div *ngIf="f.programID.touched && f.programID.invalid" class="alert alert-danger">
-                                    <div *ngIf="f.programID.errors.required">Program is required.</div>
+                                    <div *ngIf="f.programID.errors.required">Required.</div>
                                 </div>
                             </div>
 
@@ -103,55 +66,35 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <!-- <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.email.errors.required">Email is required.</div>
-                                        <div *ngIf="f.email.errors.pattern">Please, enter valid email address.
-                                        </div>
-                                    </div> -->
-
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Notes:</label>
+                            <label class="col-sm-2 col-form-label">Notes * :</label>
                             <div class="col-sm-2">
                             </div>
 
                             <div class="col-sm-2">
                             </div>
 
-                            <label class="col-sm-2 col-form-label">Date:</label>
+                            <label class="col-sm-2 col-form-label">Updated Date:</label>
                             <div class="col-sm-4">
-                                <label>03/14/20</label>
-
-                                <!-- <input type="text" pInputText formControlName="update_date"
-                                        class="form-control" /> -->
+                                <label>{{helpDeskForm.updatedDate}}</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                            </div>
-
-                            <div class="col-sm-4">
-                            </div>
-
-                            <div class="col-sm-4">
-
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <div class="col-sm-8">
-                                <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
-                                    class="form-control"></textarea>
+                                <textarea rows="5" cols="50" pInputTextarea formControlName="notesformcontrol"
+                                  name="notes" [(ngModel)]="helpDeskForm.notes"  class="form-control">{{helpDeskForm.notes}}</textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <div *ngIf="f.notes.touched && f.notes.invalid" class="alert alert-danger">
-                                    <div *ngIf="f.notes.errors.required">Notes is required.</div>
+                                <div *ngIf="f.notesformcontrol.touched && f.notesformcontrol.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.notesformcontrol.errors.required">Required.</div>
                                 </div>
                             </div>
                         </div>
@@ -177,8 +120,8 @@
                             <div class="col-sm-6">
                             </div>
                             <div class="col-sm-2">
-                                <button pButton class="btn btn-primary" type="submit" [disabled]="!form.valid"
-                                    label="Submit"></button>
+                                <button *ngFor="let col of button" pButton class="btn btn-primary" type="submit" 
+                                    label="">{{col.label}}</button>
                             </div>
                         </div>
 
