@@ -21,7 +21,8 @@ export class HelpDeskListViewComponent implements OnInit {
     cols: any [];
     status: any [];
     helpdeskprogram : HelpDeskFormClass = new HelpDeskFormClass();
-
+    formMode= 'edit';
+    namelist: any [];
     constructor(private productService: ProductService, private _router:Router) { 
         this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
 
@@ -30,9 +31,10 @@ export class HelpDeskListViewComponent implements OnInit {
     }
 
     
-    showDialog() {
+    createDialog() {
         this.helpdeskprogram = new HelpDeskFormClass();
         // this._router.navigate(['/Home']);
+        this.formMode = 'create';
         this.display = true;
     }
 
@@ -54,8 +56,32 @@ export class HelpDeskListViewComponent implements OnInit {
             { label: 'InProgress', value: 'InProgress' },
             { label: 'Resolved', value: 'Resolved' },
             { label: 'Reopened', value: 'Reopened' },
+            { label: 'Assign', value: 'Assign' },
             { label: 'Closed', value: 'Closed' }
         ];
+        this.namelist = [
+            { label: 'All', value: null },
+            { label: 'Reintegration', value: '7' },
+            { label: 'Non-Contract Reintegration', value: '8' },
+            { label: 'Kinship', value: '9' },
+            { label: 'Adoption', value: '10' },
+            { label: 'Independent Living', value: '11' },
+            { label: 'Non-ContractOutpatientServices', value: '12' },
+            { label: 'FCH', value: '13' },
+            { label: 'Providers', value: '14' },
+            { label: 'NC- Home Study', value: '15' },
+            { label: 'JJFC', value: '16' },
+            { label: 'PRTF', value: '17' },
+            { label: 'NC-MHR', value: '18' },
+            { label: 'Finance-Administrative', value: '19' },
+            { label: 'Finance - Accounts Payable', value: '20' },
+            { label: 'Finance- Accounts Receivable', value: '21' },
+            { label: 'Reports', value: '22' },
+            { label: 'Data Unit', value: '23' },
+            { label: 'Care Center', value: '24' },
+            { label: 'Family Preservation', value: '25' },
+
+        ]
 
     }
 
@@ -81,6 +107,7 @@ export class HelpDeskListViewComponent implements OnInit {
             console.log("krsna",this.helpdeskprogram)
         })
         this.display = true;
+        this.formMode= 'edit';
         // alert(data.id)
         console.log("cusid", JSON.stringify(data.id))
         console.log("cusid", data.staffName)

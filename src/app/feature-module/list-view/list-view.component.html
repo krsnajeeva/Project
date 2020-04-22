@@ -3,25 +3,18 @@
 
     <ng-template pTemplate="caption" let-columns>
 
-        <div style="text-align: right">
+        <div class="right-container">
             <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                 placeholder="Global Search" />
         </div>
         <div class="leftcontainer">
-            <label class="label-container" >Tickets Number :</label>
-            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                placeholder="Global Search" />
+            <button type="button" (click)="createDialog()" pButton icon="pi pi-plus" label="Create"
+                class="label-container ui-button-rounded"></button>
         </div>
-
-        <div class="leftcontainer">
-            <button type="button" (click)="showDialog()" pButton icon="pi pi-plus" label="Create"
-                class="ui-button-rounded"></button>
-        </div>
- 
     </ng-template>
 
-  
+
 
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -36,9 +29,14 @@
                     type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
                 <input style="width: 150px;" *ngSwitchCase="'staffName'" placeholder="Search by Staff Name" pInputText
                     type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+
+                <p-dropdown *ngSwitchCase="'programID'" [options]="namelist" [style]="{'width':'100%'}"
+                    (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+
                 <p-dropdown *ngSwitchCase="'status'" [options]="status"
                     (onChange)="dt.filter($event.value, col.field, 'equals')" styleClass="ui-column-filter"
                     [showClear]="true">
+
                     <ng-template let-option pTemplate="item">
                         <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
                     </ng-template>
@@ -65,7 +63,8 @@
         </tr>
     </ng-template>
 </p-table>
-
-<p-dialog header="Create Ticket" [(visible)]="display" [baseZIndex]="10000">
-    <app-form [helpDeskForm]="helpdeskprogram" *ngIf="display"></app-form>
+<!-- <div class="ui-rtl" dir="rtl"> -->
+<p-dialog [style]="{width: '50vw'}" header="Create Ticket" [(visible)]="display" [baseZIndex]="10000">
+    <app-form [helpDeskForm]="helpdeskprogram" [formMode]="formMode" *ngIf="display"></app-form>
 </p-dialog>
+<!-- </div> -->

@@ -10,7 +10,7 @@ var routes = function () {
             conn.connect().then(function () {
                 var transaction = new sql.Transaction(conn);
                 transaction.begin().then(function () {
-                    var sqlQuery = "SELECT * FROM Helpdesk WHERE id = "+_productID;
+                    var sqlQuery = "SELECT id, ticketNum, staffName, convert(varchar, [createdDate], 101) AS createdDate, convert(varchar, [updatedDate], 101) AS updatedDate, email, attachmentList, notes, status, HDP.programID, HDP.[name] FROM [dbo].[Helpdesk] H LEFT JOIN dbo.HelpDeskProgram HDP  ON HDP.Programid = H.programid WHERE id ="+_productID;
                     var req = new sql.Request(conn);
                     req.query(sqlQuery).then(function (recordset) {
                         res.json(recordset.recordset);

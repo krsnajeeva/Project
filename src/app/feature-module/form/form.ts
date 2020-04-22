@@ -9,4 +9,10 @@ export class HelpDeskFormClass {
     notes: any
     status: any
     programID: any
+    name: any
+}
+
+export class CMSUserData { 
+    staffName: string;
+    staffEmail: string;
 }

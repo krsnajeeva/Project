@@ -1,6 +1,6 @@
 export class ProductModel {
     id: Number;
-    name: String;
+    name: any;
     ticketNum: String;
     staffName: String;
     createdDate: Date;
