@@ -65,6 +65,7 @@
 </p-table>
 <!-- <div class="ui-rtl" dir="rtl"> -->
 <p-dialog [style]="{width: '50vw'}" header="Create Ticket" [(visible)]="display" [baseZIndex]="10000">
-    <app-form [helpDeskForm]="helpdeskprogram" [formMode]="formMode" *ngIf="display"></app-form>
+    <app-form [helpDeskForm]="helpdeskprogram" (formOutput)="formOutput($event)" [formMode]="formMode" *ngIf="display">
+    </app-form>
 </p-dialog>
 <!-- </div> -->

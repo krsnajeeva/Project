@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { ProductService } from '../../core-module/services/product.service';
@@ -11,7 +11,8 @@ import { formatDate } from '@angular/common';
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  inputs: ['helpDeskForm', 'formMode']
+  inputs: ['helpDeskForm', 'formMode'],
+  outputs: ['formOutput']
 })
 export class FormComponent implements OnInit {
   parentMessage: any
@@ -27,6 +28,7 @@ export class FormComponent implements OnInit {
   @Input() helpDeskForm: HelpDeskFormClass = new HelpDeskFormClass();
   @Input() formMode: string;
   isButtonVisible = false;
+  @Output() formOutput = new EventEmitter();
 
   showDialog() {
     this.formMode = 'create';
@@ -166,5 +168,6 @@ export class FormComponent implements OnInit {
         }
       }
     }
+    this.formOutput.emit({ isFormClose: false });
   }
 }

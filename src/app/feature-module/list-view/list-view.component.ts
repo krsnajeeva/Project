@@ -12,25 +12,25 @@ import { formatDate } from '@angular/common';
 })
 export class HelpDeskListViewComponent implements OnInit {
     // cols: any[];
-    today= new Date();
+    today = new Date();
     jstoday = '';
 
     display = false;
     datalist: ProductModel[];
     data: [];
-    cols: any [];
-    status: any [];
-    helpdeskprogram : HelpDeskFormClass = new HelpDeskFormClass();
-    formMode= 'edit';
-    namelist: any [];
-    constructor(private productService: ProductService, private _router:Router) { 
+    cols: any[];
+    status: any[];
+    helpdeskprogram: HelpDeskFormClass = new HelpDeskFormClass();
+    formMode = 'edit';
+    namelist: any[];
+    constructor(private productService: ProductService, private _router: Router) {
         this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
 
-        console.log('dateddd',this.jstoday);
-        
+        console.log('dateddd', this.jstoday);
+
     }
 
-    
+
     createDialog() {
         this.helpdeskprogram = new HelpDeskFormClass();
         // this._router.navigate(['/Home']);
@@ -41,7 +41,7 @@ export class HelpDeskListViewComponent implements OnInit {
     ngOnInit() {
         this.getHelpdesk();
         this.padToFour(1);
-        
+
         this.cols = [
             { field: 'ticketNum', header: 'Tickets Number' },
             { field: 'createdDate', header: 'Ticket Created Date' },
@@ -86,38 +86,42 @@ export class HelpDeskListViewComponent implements OnInit {
         ]
 
     }
-     padToFour(number) {
-        if (number<=9999) { number = ("000"+number).slice(-4); }
-        console.log("------tic_num",number)
+    padToFour(number) {
+        if (number <= 9999) { number = ("000" + number).slice(-4); }
+        console.log("------tic_num", number)
         return number;
-      }
+    }
 
     getHelpdesk(): void {
         this.productService.getHelpdesk().subscribe(data => {
             this.datalist = data;
-            console.log("datdadadada",data)
+            console.log("datdadadada", data)
         });
     };
-    
+
     getHelpdeskId(id): void {
-        this.productService.getHelpdeskId(id).subscribe(data=>{
-            console.log("asaaasas",data);
-        // alert(JSON.stringify(data))
+        this.productService.getHelpdeskId(id).subscribe(data => {
+            console.log("asaaasas", data);
+            // alert(JSON.stringify(data))
 
         });
     };
 
     updateform(data: ProductModel) {
         // this.getHelpdeskId(data.id)
-        this.productService.getHelpdeskId(data.id).subscribe(data=>{
+        this.productService.getHelpdeskId(data.id).subscribe(data => {
             this.helpdeskprogram = data[0];
-            console.log("krsna",this.helpdeskprogram)
+            console.log("krsna", this.helpdeskprogram)
         })
         this.display = true;
-        this.formMode= 'edit';
+        this.formMode = 'edit';
         // alert(data.id)
         console.log("cusid", JSON.stringify(data.id))
         console.log("cusid", data.staffName)
+    }
+
+    formOutput(event: any) {
+        this.display = event.isFormClose;
     }
 }
 
