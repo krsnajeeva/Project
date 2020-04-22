@@ -40,6 +40,8 @@ export class HelpDeskListViewComponent implements OnInit {
 
     ngOnInit() {
         this.getHelpdesk();
+        this.padToFour(1);
+        
         this.cols = [
             { field: 'ticketNum', header: 'Tickets Number' },
             { field: 'createdDate', header: 'Ticket Created Date' },
@@ -84,6 +86,11 @@ export class HelpDeskListViewComponent implements OnInit {
         ]
 
     }
+     padToFour(number) {
+        if (number<=9999) { number = ("000"+number).slice(-4); }
+        console.log("------tic_num",number)
+        return number;
+      }
 
     getHelpdesk(): void {
         this.productService.getHelpdesk().subscribe(data => {

@@ -26,6 +26,7 @@ export class FormComponent implements OnInit {
   buttonlable: String;
   @Input() helpDeskForm: HelpDeskFormClass = new HelpDeskFormClass();
   @Input() formMode: string;
+  isButtonVisible = false;
 
   showDialog() {
     this.formMode = 'create';
@@ -37,7 +38,7 @@ export class FormComponent implements OnInit {
     ticketNum: new FormControl('#007'),
     createdDate: new FormControl("2020-04-22"),
     staffName: new FormControl('KrishnaKumar'),
-    emailId: new FormControl('Krishnakumar@gmail.com'),
+    email: new FormControl('Krishnakumar@gmail.com'),
     programID: new FormControl('', Validators.required),
     status: new FormControl('New'),
     notes: new FormControl('', Validators.compose([null, Validators.required])),
@@ -53,83 +54,40 @@ export class FormComponent implements OnInit {
 
     this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
     this.current_date = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
-
-    this.status = 'New'
-    // [
-    //   // { label: 'All', value: null },
-    //   { label: 'New', value: 'New' },
-    //   { label: 'InProgress', value: 'InProgress' },
-    //   { label: 'Resolved', value: 'Resolved' },
-    //   { label: 'Reopened', value: 'Reopened' },
-    //   { label: 'Closed', value: 'Closed' }
-    // ];
-
-    this.button = [
-      { label: 'Submit', value: 'New' },
-      { label: 'Open', value: 'InProgress' },
-      { label: 'Resolve', value: 'Resolved' },
-      { label: 'Reopen', value: 'Reopened' },
-      { label: 'Assign', value: 'Reopened' },
-      { label: 'Close', value: 'Closed' }
-    ];
-
     this.cmsUserData.staffName = 'KrishnaKumar';
     this.cmsUserData.staffEmail = 'Krishnakumar@gmail.com';
-
-      switch (this.helpDeskForm.status) {
-        case 'New': {
-          this.status = 'New';
-          break;
-        }
-        case 'InProgress': {
-          this.status = 'InProgress';
-          break;
-        }
-        case 'Resolved': {
-          this.status = 'Resolved';
-          break;
-        }
-        case 'Reopened': {
-          this.status = 'Reopened';
-          break;
-        }
-        // case 'Inprogress': {
-        //   this.buttonlable = 'Re-Assign';
-        //   break;
-        // }
-        case 'Closed': {
-          this.status = 'Closed';
-          break;
-        }
-
+    this.status = this.helpDeskForm.status
+    if (this.formMode == 'create') {
+      this.buttonlable = 'Submit'
+    }
+    // else if (this.formMode == 'edit') {
+    switch (this.status) {
+      case 'New': {
+        this.buttonlable = 'Open';
+        break;
       }
-
-      switch (this.status) {
-        case 'New': {
-          this.buttonlable = 'Submit';
-          break;
-        }
-        case 'InProgress': {
-          this.buttonlable = 'Open';
-          break;
-        }
-        case 'Resolved': {
-          this.buttonlable = 'Resolve';
-          break;
-        }
-        case 'Reopened': {
-          this.buttonlable = 'Reopen';
-          break;
-        }
-        // case 'Inprogress': {
-        //   this.buttonlable = 'Re-Assign';
-        //   break;
-        // }
-        case 'Closed': {
-          this.buttonlable = 'Close';
-          break;
-        }
+      case 'InProgress': {
+        this.buttonlable = 'Resolve';
+        break;
       }
+      case 'Resolved': {
+        this.buttonlable = 'Reopen';
+        break;
+      }
+      // case 'Reopened': {
+      //   this.buttonlable = 'Reassign';
+      //   break;
+      // }
+      case 'Resolved': {
+        this.buttonlable = 'Close';
+        break;
+      }
+      case 'Closed': {
+        this.buttonlable = 'Close';
+        break;
+      }
+      // }
+    }
   }
 
   getAllPrograms(): void {
@@ -147,23 +105,66 @@ export class FormComponent implements OnInit {
   }
 
   submit() {
-    console.log("Form inputs", this.helpDeskForm);
-    if(this.form.valid){
-      this.productService.addHelpdesk(this.form.value)
-      .subscribe( data => {
-        console.log("issueadded",data);
-        alert("New Ticket Created")
-        this.router.navigate(['']);
-      });
-    }
+    if (this.formMode == 'create') {
 
-    this.helpDeskForm.staffName = this.cmsUserData.staffName;
-    this.helpDeskForm.email = this.cmsUserData.staffEmail;
-    // alert(JSON.stringify(this.form.value));
-    this.parentMessage = JSON.stringify(this.form.value);
-    console.log(this.form.value);
-    console.log("-----statusss", this.helpDeskForm.status)
-    this.router.navigate(['']);
-    this.display = false;
+      if (this.form.valid) {
+        // this.productService.addHelpdesk(this.form.value)
+        //   .subscribe(data => {
+        //     console.log("issueadded", data);
+        //     alert("New Ticket Created")
+        //     this.router.navigate(['']);
+        //   });
+        alert(JSON.stringify(this.form.value));
+
+      }
     }
+    else if (this.formMode == 'edit') {
+      console.log("Form inputs", this.helpDeskForm);
+      // this.helpDeskForm.staffName = this.cmsUserData.staffName;
+      // this.helpDeskForm.email = this.cmsUserData.staffEmail;
+      // alert(JSON.stringify(this.helpDeskForm));
+
+      switch (this.buttonlable) {
+        case 'Submit': {
+          this.helpDeskForm.status = 'New';
+          this.helpDeskForm.staffName = this.cmsUserData.staffName;
+          this.helpDeskForm.email = this.cmsUserData.staffEmail;
+          alert(JSON.stringify(this.helpDeskForm));
+          break;
+        }
+        case 'Open': {
+          this.helpDeskForm.status = 'InProgress';
+          this.helpDeskForm.staffName = this.cmsUserData.staffName;
+          this.helpDeskForm.email = this.cmsUserData.staffEmail;
+          alert(JSON.stringify(this.helpDeskForm));
+          break;
+        }
+        case 'Resolve': {
+          this.helpDeskForm.status = 'Resolved';
+          this.helpDeskForm.staffName = this.cmsUserData.staffName;
+          this.helpDeskForm.email = this.cmsUserData.staffEmail;
+          alert(JSON.stringify(this.helpDeskForm));
+          break;
+        }
+        case 'Reopen': {
+          this.helpDeskForm.status = 'Reopened';
+          this.helpDeskForm.staffName = this.cmsUserData.staffName;
+          this.helpDeskForm.email = this.cmsUserData.staffEmail;
+          alert(JSON.stringify(this.helpDeskForm));
+          break;
+        }
+        // case 'Reassign': {
+        //   this.helpDeskForm.status = 'InProgress';
+        //   break;
+        // }       
+        case 'Close': {
+          this.helpDeskForm.status = 'Closed';
+          this.helpDeskForm.staffName = this.cmsUserData.staffName;
+          this.helpDeskForm.email = this.cmsUserData.staffEmail;
+          alert(JSON.stringify(this.helpDeskForm));
+          break;
+        }
+      }
+    }
+  }
 }

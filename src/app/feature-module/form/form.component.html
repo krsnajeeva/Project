@@ -19,8 +19,10 @@
                         <label class="col-sm-2 col-form-label">Status:</label>
                         <div class="col-sm-4">
                             <!-- <label *ngIf="formMode === 'create'">{{status}}</label> -->
-                            <span *ngIf="formMode === 'create'" [class]="'customer-badge status-' + status">{{status}}</span>
-                            <span *ngIf="formMode === 'edit'" [class]="'customer-badge status-' + helpDeskForm.status">{{helpDeskForm.status}}</span>
+                            <span *ngIf="formMode === 'create'"
+                                [class]="'customer-badge status-' + 'New'">New</span>
+                            <span *ngIf="formMode === 'edit'"
+                                [class]="'customer-badge status-' + helpDeskForm.status">{{helpDeskForm.status}}</span>
                             <!-- <label *ngIf="formMode === 'edit'">{{helpDeskForm.status}}</label> -->
                         </div>
 
@@ -38,7 +40,8 @@
 
                         <label class="col-sm-2 col-form-label">Ticket Created Date:</label>
                         <div class="col-sm-4">
-                            <label formControlName="createdDate" class="form-control" *ngIf="formMode === 'create'">{{jstoday}}</label>
+                            <label formControlName="createdDate" class="form-control"
+                                *ngIf="formMode === 'create'">{{jstoday}}</label>
                             <label *ngIf="formMode === 'edit'">{{helpDeskForm.createdDate}}</label>
                         </div>
                     </div>
@@ -51,7 +54,14 @@
                                 <option value="">Choose..</option>
                                 <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
                             </select>
-                            <label *ngIf="formMode === 'edit'">{{helpDeskForm.name}}</label>
+
+                            <select *ngIf="formMode === 'edit'" class="custom-select" name="programID" [(ngModel)]="helpDeskForm.programID" formControlName="programID"
+                                class="form-control">
+                                <option value="{{helpDeskForm.programID}}">{{helpDeskForm.name}}</option>
+                                <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
+                            </select>
+
+                            <!-- <label *ngIf="formMode === 'edit'">{{helpDeskForm.name}}</label> -->
 
                         </div>
 
@@ -90,7 +100,8 @@
 
                         <label class="col-sm-2 col-form-label">Updated Date:</label>
                         <div class="col-sm-4">
-                            <label formControlName="updatedDate" class="form-control" *ngIf="formMode === 'create'">{{jstoday}}</label>
+                            <label formControlName="updatedDate" class="form-control"
+                                *ngIf="formMode === 'create'">{{jstoday}}</label>
                             <label *ngIf="formMode === 'edit'">{{helpDeskForm.updatedDate}}</label>
                         </div>
                     </div>
@@ -110,8 +121,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-4">
-                            <div *ngIf="f.notes.touched && f.notes.invalid"
-                                class="alert alert-danger">
+                            <div *ngIf="f.notes.touched && f.notes.invalid" class="alert alert-danger">
                                 <div *ngIf="f.notes.errors.required">Required.</div>
                             </div>
                         </div>
@@ -135,12 +145,20 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-5">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
 
-                            <button pButton class="btn btn-primary" [disabled]="!form.valid" type="submit" (click)="submit()"
-                                label="">{{buttonlable}}</button>
+                            <!-- <button pButton [hidden]="!isButtonVisible" *ngIf="this.isButtonVisible = " type="button" label="Primary"></button>
+                            <button pButton type="button" label="Submit" ></button>
+                            <button pButton type="button" label="Open" ></button>
+                            <button pButton type="button" label="Resolve"></button>
+                            <button pButton type="button" label="Reopen"></button>
+                            <button pButton type="button" label="Re-Assign"></button>
+                            <button pButton type="button" label="Close"></button> -->
+
+                            <button pButton class="btn btn-primary" [disabled]="!form.valid" type="submit"
+                                (click)="submit()" label={{buttonlable}}></button>
                         </div>
                     </div>
 

@@ -16,7 +16,7 @@ var routes = function () {
                     request.input("staffName", sql.VarChar(30), req.body.staffName)
                     request.input("createdDate", sql.Date, req.body.createdDate)
                     request.input("updatedDate", sql.Date, req.body.updatedDate)
-                    request.input("email", sql.VarChar(30), req.body.emailId)
+                    request.input("email", sql.VarChar(30), req.body.email)
                     request.input("attachmentList", sql.VarChar(30), req.body.attachmentList)
                     request.input("notes", sql.VarChar(30), req.body.notes)
                     request.input("status", sql.VarChar(30), req.body.status)
