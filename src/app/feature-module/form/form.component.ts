@@ -37,14 +37,14 @@ export class FormComponent implements OnInit {
 
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   form = new FormGroup({
-    ticketNum: new FormControl('#007'),
-    createdDate: new FormControl("2020-04-22"),
-    staffName: new FormControl('KrishnaKumar'),
-    email: new FormControl('Krishnakumar@gmail.com'),
+    ticketNum: new FormControl('#0001'),
+    createdDate: new FormControl("2020-04-23"),
+    staffName: new FormControl('Krishna'),
+    email: new FormControl('Krishna@gmail.com'),
     programID: new FormControl('', Validators.required),
     status: new FormControl('New'),
     notes: new FormControl('', Validators.compose([null, Validators.required])),
-    updatedDate: new FormControl("2020-04-22")
+    updatedDate: new FormControl("2020-04-23")
   });
   namelist: any[];
   selectedCity: any[]
@@ -56,8 +56,8 @@ export class FormComponent implements OnInit {
 
     this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
     this.current_date = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
-    this.cmsUserData.staffName = 'KrishnaKumar';
-    this.cmsUserData.staffEmail = 'Krishnakumar@gmail.com';
+    this.cmsUserData.staffName = 'Krishna';
+    this.cmsUserData.staffEmail = 'Krishna@gmail.com';
     this.status = this.helpDeskForm.status
     if (this.formMode == 'create') {
       this.buttonlable = 'Submit'
@@ -110,14 +110,15 @@ export class FormComponent implements OnInit {
     if (this.formMode == 'create') {
 
       if (this.form.valid) {
-        // this.productService.addHelpdesk(this.form.value)
-        //   .subscribe(data => {
-        //     console.log("issueadded", data);
-        //     alert("New Ticket Created")
-        //     this.router.navigate(['']);
-        //   });
+        this.productService.addHelpdesk(this.form.value)
+          .subscribe(data => {
+            console.log("issueadded", data);
+            alert("New Ticket Created")
+            this.router.navigate(['']);
+          });
         alert(JSON.stringify(this.form.value));
-
+        this.formOutput.emit({ isFormClose: false });
+console.log('=--==--asasasasasa')
       }
     }
     else if (this.formMode == 'edit') {
