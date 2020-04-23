@@ -7,7 +7,6 @@ import { DropdownModule } from 'primeng/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core-module/app.component';
-import { CountriesListComponent } from './feature-module/countries-list/countries-list.component';
 import { ToolBarComponent } from './block-module/tool-bar/tool-bar.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
@@ -22,16 +21,15 @@ import { TableModule } from 'primeng/table';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { HelpDeskFeatureModule } from './feature-module/feature.module';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CardModule} from 'primeng/card';
-import {AccordionModule} from 'primeng/accordion';  
+import { CardModule } from 'primeng/card';
+import { AccordionModule } from 'primeng/accordion';
 import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CountriesListComponent,
     ToolBarComponent,
   ],
   imports: [

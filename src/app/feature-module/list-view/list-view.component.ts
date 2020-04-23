@@ -32,10 +32,9 @@ export class HelpDeskListViewComponent implements OnInit {
 
 
     createDialog() {
-        this.helpdeskprogram = new HelpDeskFormClass();
-        // this._router.navigate(['/Home']);
-        this.formMode = 'create';
-        this.display = true;
+        // this.helpdeskprogram = new HelpDeskFormClass();
+        // this.formMode = 'create';
+        return this._router.navigate([''])
     }
 
     ngOnInit() {
