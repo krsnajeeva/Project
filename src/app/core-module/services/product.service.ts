@@ -18,6 +18,10 @@ export class ProductService {
   getHelpdesk() {
     return this.http.get<ProductModel[]>(`${this.baseurl}/all`);
   }
+
+  getLastId() {
+    return this.http.get<ProductModel[]>(`${this.baseurl}/id`);
+  }
   //------------------------------------------------------------------
   getHelpdeskId(id) {
     return this.http.get<ProductModel[]>(`${this.baseurl}/one/id/${id}`);

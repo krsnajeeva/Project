@@ -28,12 +28,15 @@ var productControllerput = require('./Controller/ProductControllerPut')();
 var productControllerdelete = require('./Controller/ProductControllerDelete')();
 var productControllergetall = require('./Controller/ProductControllerGetapi')();
 var ProductControllergetone = require('./Controller/ProductControllerGetone')();
+var ProductControllerGetLastID = require('./Controller/ProductControllerGetLastID')();
 
 // app.get("/product",function(request,response)
 // {
 //     response.json({"Message":"Welcome to Node js"});
 // });
 app.use("/api/name",productController)
+
+app.use("/api/name/id",ProductControllerGetLastID)
 
 app.use("/api/name/all",productControllergetall)
 

@@ -25,6 +25,8 @@ export class FormComponent implements OnInit {
   current_date = ''
   cmsUserData: CMSUserData = new CMSUserData();
   buttonlable: String;
+  ticketNumber: String;
+
   @Input() helpDeskForm: HelpDeskFormClass = new HelpDeskFormClass();
   @Input() formMode: string;
   isButtonVisible = false;
@@ -37,7 +39,7 @@ export class FormComponent implements OnInit {
 
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   form = new FormGroup({
-    ticketNum: new FormControl('#0001'),
+    ticketNum: new FormControl(this.ticketNumber),
     createdDate: new FormControl("2020-04-23"),
     staffName: new FormControl('Krishna'),
     email: new FormControl('Krishna@gmail.com'),
@@ -53,6 +55,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     console.log("Current Form Mode", this.formMode);
     this.getAllPrograms();
+    this.getLastId();
 
     this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
     this.current_date = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
@@ -91,7 +94,17 @@ export class FormComponent implements OnInit {
       // }
     }
   }
-
+  getLastId(): void {
+    this.productService.getLastId().subscribe(data => {
+      this.padToFour(data[0].id);
+    });
+  }
+  padToFour(number) {
+    number = ("000" + number).slice(-4);
+    this.ticketNumber = "#" + number
+    console.log("------tic_num", this.ticketNumber)
+    // return number;
+  }
   getAllPrograms(): void {
     this.productService.getAllPrograms().subscribe(namelist => {
       this.namelist = namelist;
@@ -108,18 +121,18 @@ export class FormComponent implements OnInit {
 
   submit() {
     if (this.formMode == 'create') {
-
-      if (this.form.valid) {
-        this.productService.addHelpdesk(this.form.value)
-          .subscribe(data => {
-            console.log("issueadded", data);
-            alert("New Ticket Created")
-            this.router.navigate(['']);
-          });
-        alert(JSON.stringify(this.form.value));
-        this.formOutput.emit({ isFormClose: false });
-console.log('=--==--asasasasasa')
-      }
+      alert(JSON.stringify(this.form.value));
+      // if (this.form.valid) {
+      //   this.productService.addHelpdesk(this.form.value)
+      //     .subscribe(data => {
+      //       console.log("issueadded", data);
+      //       alert("New Ticket Created")
+      //       this.router.navigate(['']);
+      //     });
+      //   alert(JSON.stringify(this.form.value));
+      //   this.formOutput.emit({ isFormClose: false });
+      //   console.log('=--==--asasasasasa')
+      // }
     }
     else if (this.formMode == 'edit') {
       console.log("Form inputs", this.helpDeskForm);
