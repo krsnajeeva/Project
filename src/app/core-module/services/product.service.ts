@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductModel } from './ProductModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+  endPoint = environment;
+
   constructor(private http: HttpClient) { }
 
-  baseurl: string = "http://localhost:1337/api/name";
+  baseurl: string = this.endPoint.url;
 
   getAllPrograms() {
     return this.http.get<ProductModel[]>(`${this.baseurl}`);

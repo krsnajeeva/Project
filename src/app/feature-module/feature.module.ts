@@ -13,6 +13,7 @@ import {CardModule} from 'primeng/card';
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FormsModule } from "@angular/forms";
         CardModule,
         ReactiveFormsModule,
         BrowserModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ],
     exports: [
         HelpDeskListViewComponent,
