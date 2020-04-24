@@ -2,7 +2,6 @@
     <h5 class="card-header">Edit Ticket</h5>
     <div class="card-body">
         <form [formGroup]="registerForm">
-
             <div class="form-group row">
                 <label class="col-sm-2 ">Tickets Number:</label>
                 <label class="col-sm-4">{{data.ticketNum}}</label>
@@ -26,15 +25,16 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Program * :</label>
                 <div class="col-sm-4">
-                    <select class="custom-select"  name="programID" [(ngModel)]="helpdeskprogram.programID" formControlName="programID" class="form-control"
+                    <select class="custom-select" [(ngModel)]="helpdesk_programID"
+                        formControlName="programID" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
-                        <option  value="{{data.programID}}">{{data.name}}</option>
+                        <option value="{{data.programID}}">{{data.name}}</option>
                         <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
                     </select>
-
+<!-- 
                     <div *ngIf="submitted && f.programID.errors" class="invalid-feedback">
                         <div *ngIf="f.programID.errors.required">Required</div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <label class="col-sm-2 col-form-label">Staff Email:</label>
@@ -57,9 +57,8 @@
                     <!-- <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
                          class="form-control">wqw</textarea> -->
 
-                         <textarea  name="notes" [(ngModel)]="helpdeskprogram.notes" rows="5" cols="50" pInputTextarea
-                        
-                         >{{data.notes}}</textarea>
+                    <textarea [(ngModel)]="helpdesk_notes" rows="5" cols="50"
+                        pInputTextarea>{{data.notes}}</textarea>
 
                     <!-- <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
                         <div *ngIf="f.notes.errors.required">Required</div>
@@ -92,7 +91,39 @@
                 <button pButton class="button" [hidden]="!isButtonVisible" type="button" label="Close"></button>
             </div>
         </form>
-
     </div>
+</div>
 
+<div class="card m-2">
+    <h5 class="card-header">Issue Log</h5>
+    <div class="contant-body card-body">
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <textarea [(ngModel)]="issuelog" class="textarea" name="notes" rows="5" cols="100" autoResize="autoResize"
+                    placeholder="Write Somthing..." pInputTextarea> </textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <button pButton type="button" (click)="onSubmitLog()" label="Save" class="ui-button-raised ui-button-success"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card m-2">
+    <h5 class="card-header">Issue Log</h5>
+    <div class="card-body">
+        <div class="card m-2" *ngFor="let log of LogData">
+            <div class="contant" >
+                <div class="form-group row m-2">
+                    <label class="col-sm-6 col-form-label">{{log.name}}</label>
+                    <label class="date col-form-label col-sm-6">{{log.createdDate}}</label>
+                </div>
+                <div class="form-group row m-2">
+                    <label class="col-sm-6 col-form-label">{{log.messge}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

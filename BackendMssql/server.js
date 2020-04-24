@@ -29,6 +29,7 @@ var productControllerdelete = require('./Controller/ProductControllerDelete')();
 var productControllergetall = require('./Controller/ProductControllerGetapi')();
 var ProductControllergetone = require('./Controller/ProductControllerGetone')();
 var ProductControllerGetLastID = require('./Controller/ProductControllerGetLastID')();
+var ProductControllerGetLog = require('./Controller/ProductControllerGetLog')();
 
 // app.get("/product",function(request,response)
 // {
@@ -37,6 +38,8 @@ var ProductControllerGetLastID = require('./Controller/ProductControllerGetLastI
 app.use("/api/name",productController)
 
 app.use("/api/name/id",ProductControllerGetLastID)
+
+app.use("/api/name/log",ProductControllerGetLog)
 
 app.use("/api/name/all",productControllergetall)
 

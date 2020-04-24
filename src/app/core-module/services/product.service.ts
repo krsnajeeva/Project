@@ -25,6 +25,10 @@ export class ProductService {
   getLastId() {
     return this.http.get<ProductModel[]>(`${this.baseurl}/id`);
   }
+
+  getLogbyId(id) {
+    return this.http.get<ProductModel[]>(`${this.baseurl}/log/${id}`);
+  }
   //------------------------------------------------------------------
   getHelpdeskId(id) {
     return this.http.get<ProductModel[]>(`${this.baseurl}/one/id/${id}`);

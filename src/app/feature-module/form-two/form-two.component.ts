@@ -23,7 +23,10 @@ export class FormTwoComponent implements OnInit {
   sub: any;
   data: any;
   helpdeskprogram: HelpDeskFormClass = new HelpDeskFormClass();
-
+  LogData: any;
+  issuelog: String;
+  helpdesk_programID:any;
+  helpdesk_notes:any;
   constructor(private formBuilder: FormBuilder, private productService: ProductService, private router: Router, private route: ActivatedRoute) { }
   get f() { return this.registerForm.controls; }
 
@@ -32,11 +35,12 @@ export class FormTwoComponent implements OnInit {
     this.getAllPrograms();
     this.registerForm = this.formBuilder.group({
       programID: ['', Validators.required],
-      // notes: ['', Validators.required],
+      // notes: ['',],
     });
 
     this.sub = this.route.params.subscribe(params => {
       console.log(params.id);
+      this.getLogbyId(params.id);
       this.productService.getHelpdeskId(params.id).subscribe(data => {
         this.helpdeskprogram = data[0];
         this.data = data[0]
@@ -82,31 +86,58 @@ export class FormTwoComponent implements OnInit {
       console.log("namelist", namelist)
     });
   };
-  
+
+  getLogbyId(id): void {
+    this.productService.getLogbyId(id).subscribe(data => {
+      this.LogData = data
+      console.log("logssss",data)
+    });
+  }
 
   onSubmit() {
     // this.helpDeskForm.staffName = this.cmsUserData.staffName;
     // this.helpDeskForm.email = this.cmsUserData.staffEmail;
     // alert(JSON.stringify(this.helpdeskprogram));
-
+    this.helpdeskprogram.programID = this.helpdesk_programID;
+    // this.helpdeskprogram.notes = this.helpdesk_notes
     switch (this.buttonlable) {
       case 'Open': {
         this.helpdeskprogram.status = 'InProgress';
-        alert(JSON.stringify(this.helpdeskprogram));
+        this.productService.updateHelpdesk(this.helpdeskprogram)
+        .subscribe( data => {
+          console.log(data);
+          this.router.navigate(['']);
+        });
+        // alert(JSON.stringify(this.helpdeskprogram));
         break;
       }
       case 'Resolve': {
         this.helpdeskprogram.status = 'Resolved';
-        alert(JSON.stringify(this.helpdeskprogram));
+        this.productService.updateHelpdesk(this.helpdeskprogram)
+        .subscribe( data => {
+          console.log(data);
+          this.router.navigate(['']);
+        });
+        // alert(JSON.stringify(this.helpdeskprogram));
         break;
       }
       case 'Reopen': {
         this.helpdeskprogram.status = 'Reopened';
-        alert(JSON.stringify(this.helpdeskprogram));
+        this.productService.updateHelpdesk(this.helpdeskprogram)
+        .subscribe( data => {
+          console.log(data);
+          this.router.navigate(['']);
+        });
+        // alert(JSON.stringify(this.helpdeskprogram));
         break;
       }
       case 'Reassign': {
         this.helpdeskprogram.status = 'InProgress';
+        this.productService.updateHelpdesk(this.helpdeskprogram)
+        .subscribe( data => {
+          console.log(data);
+          this.router.navigate(['']);
+        });
         break;
       }
       default: {
@@ -115,5 +146,8 @@ export class FormTwoComponent implements OnInit {
         break;
       }
     }
+  }
+  onSubmitLog(){
+    alert(this.issuelog)
   }
 }
