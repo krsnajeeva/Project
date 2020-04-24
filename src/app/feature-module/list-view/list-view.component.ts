@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../core-module/services/product.service';
 import { ProductModel } from '../../core-module/services/ProductModel';
-import { HelpDeskFormClass } from '../form/form';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -20,10 +19,9 @@ export class HelpDeskListViewComponent implements OnInit {
     data: [];
     cols: any[];
     status: any[];
-    helpdeskprogram: HelpDeskFormClass = new HelpDeskFormClass();
     formMode = 'edit';
     namelist: any[];
-    constructor(private productService: ProductService, private _router: Router) {
+    constructor(private productService: ProductService,  private router: Router) {
         this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
 
         console.log('dateddd', this.jstoday);
@@ -34,7 +32,7 @@ export class HelpDeskListViewComponent implements OnInit {
     createDialog() {
         // this.helpdeskprogram = new HelpDeskFormClass();
         // this.formMode = 'create';
-        return this._router.navigate([''])
+        return this.router.navigate([''])
     }
 
     ngOnInit() {
@@ -57,7 +55,7 @@ export class HelpDeskListViewComponent implements OnInit {
             { label: 'InProgress', value: 'InProgress' },
             { label: 'Resolved', value: 'Resolved' },
             { label: 'Reopened', value: 'Reopened' },
-            { label: 'Assign', value: 'Assign' },
+            { label: 'Reassign', value: 'Reassign' },
             { label: 'Closed', value: 'Closed' }
         ];
         this.namelist = [
@@ -108,15 +106,17 @@ export class HelpDeskListViewComponent implements OnInit {
 
     updateform(data: ProductModel) {
         // this.getHelpdeskId(data.id)
-        this.productService.getHelpdeskId(data.id).subscribe(data => {
-            this.helpdeskprogram = data[0];
-            console.log("krsna", this.helpdeskprogram)
-        })
-        this.display = true;
-        this.formMode = 'edit';
+        // this.productService.getHelpdeskId(data.id).subscribe(data => {
+        //     this.helpdeskprogram = data[0];
+        //     console.log("krsna", this.helpdeskprogram)
+        // })
+        // this.display = true;
+        // this.formMode = 'edit';
         // alert(data.id)
-        console.log("cusid", JSON.stringify(data.id))
-        console.log("cusid", data.staffName)
+        
+        this.router.navigate(['/help-desk/edit',data.id]);
+        // console.log("cusid", JSON.stringify(data.id))
+        // console.log("cusid", data.staffName)
     }
 
     formOutput(event: any) {

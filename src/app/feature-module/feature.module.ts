@@ -14,12 +14,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from '@angular/router';
+import { FormTwoComponent } from './form-two/form-two.component';
 
 
 @NgModule({
     declarations: [
         HelpDeskListViewComponent,
-        FormComponent
+        FormComponent,
+        FormTwoComponent
     ],
     imports: [
         TableModule,
@@ -38,7 +40,8 @@ import { RouterModule } from '@angular/router';
     ],
     exports: [
         HelpDeskListViewComponent,
-        FormComponent
+        FormComponent,
+        FormTwoComponent
     ],
     providers: [
         TableModule

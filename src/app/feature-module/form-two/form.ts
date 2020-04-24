@@ -16,3 +16,7 @@ export class CMSUserData {
     staffName: string;
     staffEmail: string;
 }
+
+export class TicketNo { 
+    id: any;
+}

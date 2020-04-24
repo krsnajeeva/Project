@@ -58,12 +58,9 @@
             <td>{{data.updatedDate}}</td>
 
             <td>
-                <button routerLink="/help-desk/edit" style="margin-left: 20px;" class="btn btn-info"> Edit</button>
+                <button type="submit" (click)="updateform(data)"  style="margin-left: 20px;" class="btn btn-info"> Edit</button>
+                <!-- <button routerLink="/help-desk/edit" (click)="updateform"  style="margin-left: 20px;" class="btn btn-info"> Edit</button> -->
             </td>
         </tr>
     </ng-template>
 </p-table>
-<p-dialog [style]="{width: '50vw'}" header="Create Ticket" [(visible)]="display" [baseZIndex]="10000">
-    <app-form [helpDeskForm]="helpdeskprogram" (formOutput)="formOutput($event)" [formMode]="formMode" *ngIf="display">
-    </app-form>
-</p-dialog>

@@ -1,34 +1,34 @@
 <div class="card m-2">
-    <h5 class="card-header">Create Ticket</h5>
+    <h5 class="card-header">Edit Ticket</h5>
     <div class="card-body">
         <form [formGroup]="registerForm">
 
             <div class="form-group row">
                 <label class="col-sm-2 ">Tickets Number:</label>
-                <label id="tno" class="col-sm-4">{{ticketNumber}}</label>
+                <label class="col-sm-4">{{data.ticketNum}}</label>
 
                 <label class="col-sm-2 col-form-label">Status:</label>
                 <div class="col-sm-4">
-                    <span [class]="'customer-badge status-' + 'New'">New</span>
+                    <span [class]="'customer-badge status-' + data.status">{{data.status}}</span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Staff Name:</label>
-                <label class="col-sm-4 col-form-label">Krishna</label>
+                <label class="col-sm-4 col-form-label">{{data.staffName}}</label>
 
                 <label class="col-sm-2 col-form-label">Ticket Created Date:</label>
                 <div class="col-sm-4">
-                    <label>{{jstoday}}</label>
+                    <label>{{data.createdDate}}</label>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Program * :</label>
                 <div class="col-sm-4">
-                    <select class="custom-select" formControlName="programID" class="form-control"
+                    <select class="custom-select"  name="programID" [(ngModel)]="helpdeskprogram.programID" formControlName="programID" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
-                        <option value="">Choose..</option>
+                        <option  value="{{data.programID}}">{{data.name}}</option>
                         <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
                     </select>
 
@@ -39,7 +39,7 @@
 
                 <label class="col-sm-2 col-form-label">Staff Email:</label>
                 <div class="col-sm-4">
-                    <label>Krishna@gmail.com</label>
+                    <label>{{data.email}}</label>
                 </div>
             </div>
 
@@ -48,17 +48,22 @@
 
                 <label class="col-sm-2 col-form-label">Updated Date:</label>
                 <div class="col-sm-4">
-                    <label>{{jstoday}}</label>
+                    <label>{{current_date}}</label>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
-                        [ngClass]="{ 'is-invalid': submitted && f.notes.errors }" class="form-control"></textarea>
-                    <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+                    <!-- <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
+                         class="form-control">wqw</textarea> -->
+
+                         <textarea  name="notes" [(ngModel)]="helpdeskprogram.notes" rows="5" cols="50" pInputTextarea
+                        
+                         >{{data.notes}}</textarea>
+
+                    <!-- <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
                         <div *ngIf="f.notes.errors.required">Required</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -81,9 +86,10 @@
             <div class="form-group row">
                 <div class="col-sm-8">
                 </div>
-
                 <button class="col-sm-4" pButton class="btn btn-primary" [disabled]="!registerForm.valid" type="submit"
-                    (click)="onSubmit(ticketNumber)" label=Submit></button>
+                    (click)="onSubmit()" label={{buttonlable}}></button>
+
+                <button pButton class="button" [hidden]="!isButtonVisible" type="button" label="Close"></button>
             </div>
         </form>
 
