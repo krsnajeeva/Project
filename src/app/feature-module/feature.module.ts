@@ -15,6 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from '@angular/router';
 import { FormTwoComponent } from './form-two/form-two.component';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { FormTwoComponent } from './form-two/form-two.component';
         ReactiveFormsModule,
         BrowserModule,
         FormsModule,
-        RouterModule
+        RouterModule,
+        BreadcrumbModule
     ],
     exports: [
         HelpDeskListViewComponent,

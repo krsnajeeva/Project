@@ -45,7 +45,7 @@ export class ProductService {
   }
 
   updateHelpdesk(product: ProductModel) {
-    return this.http.delete(this.baseurl + '/one' + '/' + '/id' + product.id);
+    return this.http.put(this.baseurl + '/post' + '/id' + '/' + product.id, product);
   }
 
 }

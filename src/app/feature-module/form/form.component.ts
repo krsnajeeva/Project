@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ProductService } from '../../core-module/services/product.service';
 import { Router } from "@angular/router";
 import { formatDate } from '@angular/common';
+import { MenuItem } from 'primeng/api';
 
 
 @Component({
@@ -22,9 +23,18 @@ export class FormComponent implements OnInit {
     namelist: any[];
     uploadedFiles: any[] = [];
     ticketNumber: any;
+    menuItems: MenuItem[];
+    home: MenuItem;
+
     constructor(private formBuilder: FormBuilder, private productService: ProductService, private router: Router) { }
 
     ngOnInit() {
+        this.menuItems = [
+            // {label:'Create Ticket', url:'/help-desk/create'},
+            { label: 'Create Ticket', url: '/help-desk/edit/:id' }
+        ];
+        this.home = { icon: 'pi pi-home', url: '#' };
+
         this.getAllPrograms();
         this.productService.getLastId().subscribe(data => {
             this.ticketNumber = this.padToFour(data[0].id);

@@ -1,10 +1,14 @@
+<div class="content-section implementation">
+    <p-breadcrumb [model]="menuItems" [home]="home"></p-breadcrumb>
+</div>
+
 <div class="card m-2">
     <h5 class="card-header">Edit Ticket</h5>
     <div class="card-body">
         <form [formGroup]="registerForm">
             <div class="form-group row">
                 <label class="col-sm-2 ">Tickets Number:</label>
-                <label class="col-sm-4">{{data.ticketNum}}</label>
+                <label class="ticketNum col-sm-4">{{data.ticketNum}}</label>
 
                 <label class="col-sm-2 col-form-label">Status:</label>
                 <div class="col-sm-4">
@@ -95,7 +99,7 @@
 </div>
 
 <div class="card m-2">
-    <h5 class="card-header">Issue Log</h5>
+    <h5 class="card-header">Log</h5>
     <div class="contant-body card-body">
         <div class="form-group row">
             <div class="col-sm-12">
@@ -112,7 +116,6 @@
 </div>
 
 <div class="card m-2">
-    <h5 class="card-header">Issue Log</h5>
     <div class="card-body">
         <div class="card m-2" *ngFor="let log of LogData">
             <div class="contant" >

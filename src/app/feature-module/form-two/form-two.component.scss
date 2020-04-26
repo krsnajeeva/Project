@@ -9,25 +9,30 @@
     &.status-New {
         background-color: #ff6633;
         color: #fff;
+        font-size: large;
     }
 
     &.status-InProgress {
         background-color: #ffcc00;
+        font-size: large;
         color: #fff;
     }
 
     &.status-Resolved {
         background-color: #669933;
+        font-size: large;
         color: #fff;
     }
 
     &.status-Reopened {
         background-color: #ff0000;
+        font-size: large;
         color: #fff;
     }
 
     &.status-Closed {
         background-color: #6699cc;
+        font-size: large;
         color: #fff;
     }
 }
@@ -45,4 +50,7 @@
 }
 .date{
 text-align: right;
+}
+.ticketNum{
+font-size: x-large;
 }

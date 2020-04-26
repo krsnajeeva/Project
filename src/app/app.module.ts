@@ -26,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
 import { AccordionModule } from 'primeng/accordion';
 import { FormsModule } from "@angular/forms";
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { FormsModule } from "@angular/forms";
     BrowserAnimationsModule,
     CardModule,
     AccordionModule,
-    FormsModule
+    FormsModule,
+    BreadcrumbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
