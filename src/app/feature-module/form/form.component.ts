@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../../core-module/services/product.service';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { MenuItem } from 'primeng/api';
 
@@ -10,8 +10,6 @@ import { MenuItem } from 'primeng/api';
     selector: 'app-form',
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
-    inputs: ['helpDeskForm', 'formMode'],
-    outputs: ['formOutput']
 })
 export class FormComponent implements OnInit {
     registerForm: FormGroup;
@@ -19,7 +17,7 @@ export class FormComponent implements OnInit {
     status: any;
     today = new Date();
     jstoday = '';
-    current_date = ''
+    currentDate = '';
     namelist: any[];
     uploadedFiles: any[] = [];
     ticketNumber: any;
@@ -37,20 +35,21 @@ export class FormComponent implements OnInit {
 
         this.getAllPrograms();
         this.productService.getLastId().subscribe(data => {
+            console.log(data);
             this.ticketNumber = this.padToFour(data[0].id);
         });
         this.jstoday = formatDate(this.today, 'MM-dd-yyyy', 'en-US', '+0530');
-        this.current_date = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
+        this.currentDate = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
 
         this.registerForm = this.formBuilder.group({
             programID: ['', Validators.required],
             notes: ['', Validators.required],
             ticketNum: [],
-            createdDate: [this.current_date],
+            createdDate: [this.currentDate],
             staffName: ['Krishna'],
             email: ['Krishna@gmail.com'],
             status: ['New'],
-            updatedDate: [this.current_date],
+            updatedDate: [this.currentDate],
             attachmentList: ['attachmentfilelink']
         }
         );
@@ -62,24 +61,24 @@ export class FormComponent implements OnInit {
     getAllPrograms(): void {
         this.productService.getAllPrograms().subscribe(namelist => {
             this.namelist = namelist;
-            console.log("namelist", namelist)
+            console.log('namelist', namelist);
         });
-    };
+    }
 
     padToFour(id) {
-        var number = id + 1
-        number = ("000" + number).slice(-4);
-        var t_no = "#" + number
-        return t_no;
+        let ticketNumber = id + 1;
+        ticketNumber = ('000' + ticketNumber).slice(-4);
+        const ticketNo = '#' + ticketNumber;
+        return ticketNo;
     }
 
     onSubmit(ticketNumber) {
         this.submitted = true;
-        this.registerForm.value.ticketNum = ticketNumber
+        this.registerForm.value.ticketNum = ticketNumber;
         if (this.registerForm.valid) {
             this.productService.addHelpdesk(this.registerForm.value)
                 .subscribe(data => {
-                    console.log("issueadded", data);
+                    console.log('issueadded', data);
                     // alert("New Ticket Created")
                     this.router.navigate(['']);
                 });

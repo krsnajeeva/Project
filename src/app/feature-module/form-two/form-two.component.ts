@@ -16,22 +16,22 @@ export class FormTwoComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   today = new Date();
-  current_date = ''
-  buttonlable: String;
-  isButtonVisible = false;
+  currentDate: any;
+  buttonlable: any;
+  isButtonVisible: any;
   uploadedFiles: any[] = [];
   namelist: any[];
   sub: any;
   data: any;
   helpdeskprogram: HelpDeskFormClass = new HelpDeskFormClass();
   LogData: any;
-  issuelog: String;
-  helpdesk_programID: any;
-  helpdesk_notes: any;
+  issuelog: any;
+  helpdeskProgramID: any;
+  helpdeskNotes: any;
   menuItems: MenuItem[];
   home: MenuItem;
 
-  constructor(private formBuilder: FormBuilder, private productService: ProductService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private productService: ProductService, private route: ActivatedRoute) { }
   get f() { return this.registerForm.controls; }
 
   ngOnInit(): void {
@@ -52,26 +52,27 @@ export class FormTwoComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       console.log(params.id);
       this.getLogbyId(params.id);
-      this.getRecord(params.id)
+      this.getRecord(params.id);
     });
 
-    this.current_date = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
+    this.currentDate = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
 
 
   }
   getAllPrograms(): void {
     this.productService.getAllPrograms().subscribe(namelist => {
       this.namelist = namelist;
-      console.log("namelist", namelist)
+      console.log('namelist', namelist);
     });
-  };
+  }
 
   getRecord(id): void {
     this.productService.getHelpdeskId(id).subscribe(data => {
       this.helpdeskprogram = data[0];
-      this.data = data[0]
+      console.log(data);
+      this.data = data[0];
       // console.log("krsna", this.helpdeskprogram)
-
+      this.isButtonVisible = false;
       switch (this.data.status) {
         case 'New': {
           this.buttonlable = 'Open';
@@ -99,30 +100,40 @@ export class FormTwoComponent implements OnInit {
           break;
         }
       }
-    })
+    });
 
   }
   getLogbyId(id): void {
     this.productService.getLogbyId(id).subscribe(data => {
-      this.LogData = data
-      console.log("logssss", data)
+      this.LogData = data;
+      console.log('logssss', data);
     });
   }
+  onClose(id){
+    this.helpdeskprogram.status = 'Closed';
+    this.productService.updateHelpdesk(this.helpdeskprogram)
+      .subscribe(data => {
+        console.log(data);
+        // alert(data[0].id)
+        this.getRecord(id);
+        // this.router.navigate(['']);
+      });
+  }
 
-  onSubmit() {
+  onSubmit(id) {
     // this.helpDeskForm.staffName = this.cmsUserData.staffName;
     // this.helpDeskForm.email = this.cmsUserData.staffEmail;
     // alert(JSON.stringify(this.helpdeskprogram));
-    this.helpdeskprogram.programID = this.helpdesk_programID;
-    // this.helpdeskprogram.notes = this.helpdesk_notes
+    this.helpdeskprogram.programID = this.helpdeskProgramID;
+    // this.helpdeskprogram.notes = this.helpdeskNotes
     switch (this.buttonlable) {
       case 'Open': {
         this.helpdeskprogram.status = 'InProgress';
         this.productService.updateHelpdesk(this.helpdeskprogram)
           .subscribe(data => {
             console.log(data);
-            alert(data[0].id)
-            this.getRecord(data[0].id)
+            // alert(data[0].id)
+            this.getRecord(id);
             // this.router.navigate(['']);
           });
         // alert(JSON.stringify(this.helpdeskprogram));
@@ -133,7 +144,7 @@ export class FormTwoComponent implements OnInit {
         this.productService.updateHelpdesk(this.helpdeskprogram)
           .subscribe(data => {
             // alert(data)
-            // var va = data
+            this.getRecord(id);
             console.log(data);
             // this.router.navigate(['']);
           });
@@ -144,8 +155,8 @@ export class FormTwoComponent implements OnInit {
         this.helpdeskprogram.status = 'Reopened';
         this.productService.updateHelpdesk(this.helpdeskprogram)
           .subscribe(data => {
-            console.log("---gauranga", data);
-            alert(data);
+            console.log(data);
+            this.getRecord(id);
             // this.getRecord(data[0].id)
             // this.router.navigate(['']);
           });
@@ -156,19 +167,25 @@ export class FormTwoComponent implements OnInit {
         this.helpdeskprogram.status = 'InProgress';
         this.productService.updateHelpdesk(this.helpdeskprogram)
           .subscribe(data => {
-            console.log("---gauranga", data);
+            console.log(data);
+            this.getRecord(id);
             // this.router.navigate(['']);
           });
         break;
       }
       default: {
-        // this.helpdeskprogram.status = 'Closed';
-        alert(JSON.stringify(this.helpdeskprogram));
+        this.helpdeskprogram.status = 'Closed';
+        this.productService.updateHelpdesk(this.helpdeskprogram)
+        .subscribe(data => {
+          console.log(data);
+          this.getRecord(id);
+          // this.router.navigate(['']);
+        });
         break;
       }
     }
   }
   onSubmitLog() {
-    alert(this.issuelog)
+    alert(this.issuelog);
   }
 }

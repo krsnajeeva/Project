@@ -32,13 +32,11 @@ export class HelpDeskListViewComponent implements OnInit {
     createDialog() {
         // this.helpdeskprogram = new HelpDeskFormClass();
         // this.formMode = 'create';
-        return this.router.navigate([''])
+        return this.router.navigate(['']);
     }
 
     ngOnInit() {
         this.getHelpdesk();
-        this.padToFour(1);
-
         this.cols = [
             { field: 'ticketNum', header: 'Tickets Number' },
             { field: 'createdDate', header: 'Ticket Created Date' },
@@ -80,29 +78,24 @@ export class HelpDeskListViewComponent implements OnInit {
             { label: 'Care Center', value: '24' },
             { label: 'Family Preservation', value: '25' },
 
-        ]
+        ];
 
-    }
-    padToFour(number) {
-        if (number <= 9999) { number = ("000" + number).slice(-4); }
-        console.log("------tic_num", number)
-        return number;
     }
 
     getHelpdesk(): void {
         this.productService.getHelpdesk().subscribe(data => {
             this.datalist = data;
-            console.log("datdadadada", data)
+            console.log('datdadadada', data);
         });
-    };
+    }
 
     getHelpdeskId(id): void {
         this.productService.getHelpdeskId(id).subscribe(data => {
-            console.log("asaaasas", data);
+            console.log('asaaasas', data);
             // alert(JSON.stringify(data))
 
         });
-    };
+    }
 
     updateform(data: ProductModel) {
         // this.getHelpdeskId(data.id)
@@ -113,8 +106,7 @@ export class HelpDeskListViewComponent implements OnInit {
         // this.display = true;
         // this.formMode = 'edit';
         // alert(data.id)
-        
-        this.router.navigate(['/help-desk/edit',data.id]);
+        this.router.navigate(['/help-desk/edit', data.id]);
         // console.log("cusid", JSON.stringify(data.id))
         // console.log("cusid", data.staffName)
     }

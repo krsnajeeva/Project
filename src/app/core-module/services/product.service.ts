@@ -29,7 +29,7 @@ export class ProductService {
   getLogbyId(id) {
     return this.http.get<ProductModel[]>(`${this.baseurl}/log/${id}`);
   }
-  //------------------------------------------------------------------
+
   getHelpdeskId(id) {
     return this.http.get<ProductModel[]>(`${this.baseurl}/one/id/${id}`);
 

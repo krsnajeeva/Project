@@ -3,8 +3,7 @@ var router = express.Router();
 var sql = require("mssql");
 var conn = require("../connection/connect")();
 
-var routes = function ()
- {
+var routes = function () {
     router.route('/')
         .post(function (req, res) {
             conn.connect().then(function () {
@@ -21,18 +20,18 @@ var routes = function ()
                     request.input("status", sql.VarChar(30), req.body.status)
                     request.input("programID", sql.Int, req.body.programID)
                     request.execute("sp_InsertHelpDesk")
-                    .then(function () {
-                        transaction.commit().then(function (recordSet) {
-                            conn.close();
-                            res.status(200).send(req.body);
+                        .then(function () {
+                            transaction.commit().then(function (recordSet) {
+                                conn.close();
+                                res.status(200).send(req.body);
+                            }).catch(function (err) {
+                                conn.close();
+                                res.status(400).send("Error while inserting data", err);
+                            });
                         }).catch(function (err) {
                             conn.close();
-                            res.status(400).send("Error while inserting data",err);
+                            res.status(400).send("Error while procedure", err);
                         });
-                    }).catch(function (err) {
-                        conn.close();
-                        res.status(400).send("Error while procedure",err);
-                    });
                 }).catch(function (err) {
                     conn.close();
                     res.status(400).send("Error while request data");
@@ -42,6 +41,6 @@ var routes = function ()
                 res.status(400).send("Error while connecting");
             });
         });
-        return router;
+    return router;
 };
 module.exports = routes;

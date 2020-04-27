@@ -1,13 +1,13 @@
 export class ProductModel {
-    id: Number;
+    id: any;
     name: any;
-    ticketNum: String;
-    staffName: String;
-    createdDate: Date;
-    updatedDate: Date;
-    email: String;
-    attachmentList: String;
-    notes: String;
-    status: String;
-    programID: Number
+    ticketNum: any;
+    staffName: any;
+    createdDate: any;
+    updatedDate: any;
+    email: any;
+    attachmentList: any;
+    notes: any;
+    status: any;
+    programID: any;
 }

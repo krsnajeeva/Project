@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Program * :</label>
                 <div class="col-sm-4">
-                    <select class="custom-select" [(ngModel)]="helpdesk_programID"
+                    <select class="custom-select" [(ngModel)]="helpdeskProgramID"
                         formControlName="programID" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
                         <option value="{{data.programID}}">{{data.name}}</option>
@@ -52,7 +52,7 @@
 
                 <label class="col-sm-2 col-form-label">Updated Date:</label>
                 <div class="col-sm-4">
-                    <label>{{current_date}}</label>
+                    <label>{{currentDate}}</label>
                 </div>
             </div>
 
@@ -61,7 +61,7 @@
                     <!-- <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
                          class="form-control">wqw</textarea> -->
 
-                    <textarea [(ngModel)]="helpdesk_notes" rows="5" cols="50"
+                    <textarea [(ngModel)]="helpdeskNotes" rows="5" cols="50"
                         pInputTextarea>{{data.notes}}</textarea>
 
                     <!-- <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
@@ -90,9 +90,9 @@
                 <div class="col-sm-8">
                 </div>
                 <button class="col-sm-4" pButton class="btn btn-primary" [disabled]="!registerForm.valid" type="submit"
-                    (click)="onSubmit()" label={{buttonlable}}></button>
+                    (click)="onSubmit(data.id)" label={{buttonlable}}></button>
 
-                <button pButton class="button" [hidden]="!isButtonVisible" type="button" label="Close"></button>
+                <button pButton (click)="onClose(data.id)" class="button" [hidden]="!isButtonVisible" type="button" label="Close"></button>
             </div>
         </form>
     </div>
