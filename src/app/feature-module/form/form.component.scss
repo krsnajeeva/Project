@@ -10,6 +10,7 @@
         background-color: #ff6633;
         color: #fff;
         font-size: large;
+        padding: 10px;
     }
 
     &.status-InProgress {
@@ -53,4 +54,17 @@
 }
 .header{
     width: 100%;
+}
+.breadcrumb{
+    width: fit-content;
+    font-size: medium;
+    // background-color: rgba(192,192,192,0.3);
+}
+.file-upload{
+padding-right: 30px;
+}
+.label{
+    font-weight: bold;
+    font-family: 'museo-sans-rounded, sans-serif';
+    font-size: large;
 }

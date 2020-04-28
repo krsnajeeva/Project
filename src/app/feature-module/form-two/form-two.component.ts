@@ -40,8 +40,8 @@ export class FormTwoComponent implements OnInit {
 
     this.getAllPrograms();
     this.registerForm = this.formBuilder.group({
-      programID: ['', Validators.required],
-      notes: ['']
+      programID: [{ value: '', disabled: true }],
+      notes: [{ value: '', disabled: true }]
     });
 
     this.sub = this.route.params.subscribe(params => {
@@ -51,8 +51,6 @@ export class FormTwoComponent implements OnInit {
     });
 
     this.currentDate = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
-
-
   }
   getAllPrograms(): void {
     this.productService.getAllPrograms().subscribe(namelist => {

@@ -1,6 +1,6 @@
-<div class="content-section implementation">
+<!-- <div class="content-section implementation">
     <p-breadcrumb [model]="menuItems" [home]="home"></p-breadcrumb>
-</div>
+</div> -->
 
 <div class="card m-2">
 
@@ -9,15 +9,15 @@
         <table class="header">
             <tr>
                 <td>
-                    <h5>Edit Ticket</h5>
+                    <p-breadcrumb class="breadcrumb" [model]="menuItems" [home]="home"></p-breadcrumb>
                 </td>
                 <td>
                     <div class="header-button">
-                        <button pButton class="btn btn-primary" [disabled]="!registerForm.valid" [hidden]="!isCloseBtnVisible"
-                            type="submit" (click)="onSubmit(data.id)" label={{buttonlable}}></button>
+                        <button pButton class="btn btn-primary" [hidden]="!isCloseBtnVisible" type="submit"
+                            (click)="onSubmit(data.id)" label={{buttonlable}}></button>
 
-                        <button pButton (click)="onClose(data.id)" [disabled]="!registerForm.valid" class="button btn btn-primary" [hidden]="!isButtonVisible"
-                            type="button" label="Close"></button>
+                        <button pButton (click)="onClose(data.id)" class="button btn btn-primary"
+                            [hidden]="!isButtonVisible" type="button" label="Close"></button>
                     </div>
                 </td>
             </tr>
@@ -31,13 +31,13 @@
             <table class="tableview">
                 <tr>
                     <td>
-                        <label>Tickets Number:</label>
+                        <label class="label">Ticket Number:</label>
                     </td>
                     <td>
                         <span class="ticketNum-badge">{{data.ticketNum}}</span>
                     </td>
                     <td>
-                        <label>Status:</label>
+                        <label class="label">Status</label>
                     </td>
                     <td>
                         <span [class]="'customer-badge status-' + data.status">{{data.status}}</span>
@@ -46,13 +46,13 @@
 
                 <tr>
                     <td>
-                        <label>Staff Name:</label>
+                        <label class="label">Staff Name</label>
                     </td>
                     <td>
                         <label>{{data.staffName}}</label>
                     </td>
                     <td>
-                        <label>Ticket Created Date:</label>
+                        <label class="label">Ticket Created Date</label>
                     </td>
                     <td>
                         <label>{{data.createdDate}}</label>
@@ -61,17 +61,17 @@
 
                 <tr>
                     <td>
-                        <label>Program * :</label>
+                        <label class="label">Program <span style="color:red;font-weight:bold">*</span></label>
                     </td>
                     <td>
-                        <select class="custom-select form-control"
-                            formControlName="programID" [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
+                        <select class="custom-select form-control" formControlName="programID"
+                            [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
                             <option value=""></option>
                             <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
                         </select>
                     </td>
                     <td>
-                        <label>Staff Email:</label>
+                        <label class="label">Staff Email</label>
                     </td>
                     <td>
                         <label>{{data.email}}</label>
@@ -80,28 +80,16 @@
 
                 <tr>
                     <td>
-                        <label>Notes * :</label>
-                    </td>
-                    <td>
-                        <textarea class="textarea" rows="5" cols="10" pInputTextarea formControlName="notes"
-                            [ngClass]="{ 'is-invalid': submitted && f.notes.errors }" class="form-control"></textarea>
-                        <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
-                            <div *ngIf="f.notes.errors.required">Required</div>
-                        </div>
-                    </td>
-                    <td>
-                        <label>Updated Date:</label>
+                        <label class="label">Updated Date</label>
                     </td>
                     <td>
                         <label>{{currentDate}}</label>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>
-                        <label>Attachment:</label>
                     </td>
                     <td>
+                        <label class="label">Attachment</label>
+                    </td>
+                    <td class="file-upload">
                         <p-fileUpload name="demo[]" url="./upload.php" multiple="multiple" accept="image/*"
                             maxFileSize="1000000">
                             <ng-template pTemplate="content">
@@ -115,8 +103,22 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td>
+                        <label class="label">Notes <span style="color:red;font-weight:bold">*</span></label>
+                    </td>
+                </tr>
+
             </table>
 
+
+            <div class="col-sm-8">
+                <textarea class="textarea" rows="5" cols="50" pInputTextarea formControlName="notes"
+                    [ngClass]="{ 'is-invalid': submitted && f.notes.errors }" class="form-control"></textarea>
+                <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+                    <div *ngIf="f.notes.errors.required">Required</div>
+                </div>
+            </div>
             <!-- <div class="form-group row">
                 <label class="col-sm-2 ">Tickets Number:</label>
                 <label class="ticketNum col-sm-4">{{data.ticketNum}}</label>
@@ -229,7 +231,35 @@
 <div class="card m-2">
     <div class="card-body">
         <div class="card m-2" *ngFor="let log of LogData">
-            <div class="contant">
+            <div class="card-header">
+                <table class="logView">
+                    <tr>
+                        <td>
+                            <div class="name-align">
+                                <label>{{log.name}}</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="date-align">
+                                <label>{{log.createdDate}}</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-body">
+                <table class="logView">
+
+                    <tr>
+                        <td>
+                            <label>{{log.messge}}</label>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <!-- <div class="contant">
                 <div class="form-group row m-2">
                     <label class="col-sm-6 col-form-label">{{log.name}}</label>
                     <label class="date col-form-label col-sm-6">{{log.createdDate}}</label>
@@ -237,7 +267,7 @@
                 <div class="form-group row m-2">
                     <label class="col-sm-6 col-form-label">{{log.messge}}</label>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

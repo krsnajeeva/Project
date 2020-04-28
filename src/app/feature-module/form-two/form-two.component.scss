@@ -10,36 +10,42 @@
         background-color: #ff6633;
         color: #fff;
         font-size: large;
+        padding: 10px;
     }
 
     &.status-InProgress {
         background-color: #ffcc00;
         font-size: large;
         color: #fff;
+        padding: 10px;
     }
 
     &.status-Resolved {
         background-color: #669933;
         font-size: large;
         color: #fff;
+        padding: 10px;
     }
 
     &.status-Reopened {
         background-color: #ff0000;
         font-size: large;
         color: #fff;
+        padding: 10px;
     }
 
     &.status-Reassign {
         background-color: #000080;
         font-size: large;
         color: #fff;
+        padding: 10px;
     }
 
     &.status-Closed {
         background-color: #6699cc;
         font-size: large;
         color: #fff;
+        padding: 10px;
     }
 }
 .ticketNum-badge{
@@ -69,4 +75,32 @@
 }
 .button{
 margin-left: 20px;
+}
+.breadcrumb{
+    width: fit-content;
+    font-size: medium;
+    // background-color: rgba(192,192,192,0.3);
+}
+.logView {
+    width: 100%;
+    // margin: 10px;
+    // padding: 20px;
+}
+.date-align{
+    text-align: right;
+    // padding-right: 20px;
+    // font-size: larger;
+    font-weight: bold;
+}
+.name-align{
+    // font-size: larger;
+    font-weight: bold;
+}
+.label{
+    font-weight: bold;
+    font-family: 'museo-sans-rounded, sans-serif';
+    font-size: large;
+}
+.file-upload{
+    padding-right: 30px;
 }

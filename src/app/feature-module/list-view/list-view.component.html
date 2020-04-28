@@ -2,8 +2,23 @@
     [responsive]="true" [rowHover]="true">
 
     <ng-template pTemplate="caption" let-columns>
+        <table class="header">
+            <tr>
+                <td>
+                    <button type="button" routerLink="/help-desk/create" pTooltip="Create a Ticket" pButton icon="pi pi-plus" label="Create"
+                    class="label-container ui-button-rounded"></button>
+                </td>
+                <td>
+                    <div style="text-align: right;">
+                        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                        <input pInputText type="text" style="width: 20rem;" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Global Search" />
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-        <div class="right-container">
+        <!-- <div class="right-container">
             <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
             <input pInputText type="text" style="width: 20rem;" (input)="dt.filterGlobal($event.target.value, 'contains')"
                 placeholder="Global Search" />
@@ -11,7 +26,7 @@
         <div class="leftcontainer">
             <button type="button" routerLink="/help-desk/create" pTooltip="Create a Ticket" pButton icon="pi pi-plus" label="Create"
                 class="label-container ui-button-rounded"></button>
-        </div>
+        </div> -->
     </ng-template>
 
     <ng-template pTemplate="header" let-columns>
@@ -23,9 +38,9 @@
         </tr>
         <tr>
             <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                <input style="width: 150px;" *ngSwitchCase="'ticketNum'" placeholder="Search by Ticket No" pInputText
+                <input style="width: 100%;" *ngSwitchCase="'ticketNum'" placeholder="Search by Ticket No" pInputText
                     type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
-                <input style="width: 150px;" *ngSwitchCase="'staffName'" placeholder="Search by Staff Name" pInputText
+                <input style="width: 100%;" *ngSwitchCase="'staffName'" placeholder="Search by Staff Name" pInputText
                     type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
 
                 <p-dropdown *ngSwitchCase="'programID'" [options]="namelist" styleClass="ui-column-filter"

@@ -47,7 +47,7 @@ export class FormComponent implements OnInit {
             ticketNum: [],
             createdDate: [this.currentDate],
             staffName: ['Krishna'],
-            email: ['Krishna@gmail.com'],
+            email: ['krishna2333@gmail.com'],
             status: ['New'],
             updatedDate: [this.currentDate],
             attachmentList: ['attachmentfilelink']
