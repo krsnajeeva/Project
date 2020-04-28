@@ -38,7 +38,7 @@ export class HelpDeskListViewComponent implements OnInit {
     ngOnInit() {
         this.getHelpdesk();
         this.cols = [
-            { field: 'ticketNum', header: 'Tickets Number' },
+            { field: 'ticketNum', header: 'Ticket Number' },
             { field: 'createdDate', header: 'Ticket Created Date' },
             { field: 'staffName', header: 'Staff Name' },
             { field: 'email', header: 'Staff Email' },
@@ -53,7 +53,6 @@ export class HelpDeskListViewComponent implements OnInit {
             { label: 'InProgress', value: 'InProgress' },
             { label: 'Resolved', value: 'Resolved' },
             { label: 'Reopened', value: 'Reopened' },
-            { label: 'Reassign', value: 'Reassign' },
             { label: 'Closed', value: 'Closed' }
         ];
         this.namelist = [

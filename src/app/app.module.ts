@@ -27,6 +27,7 @@ import { CardModule } from 'primeng/card';
 import { AccordionModule } from 'primeng/accordion';
 import { FormsModule } from '@angular/forms';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     CardModule,
     AccordionModule,
     FormsModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,7 +12,9 @@ export class HelpDeskFormClass{
     name: any;
 }
 
-export class CMSUserData{
-    staffName: string;
-    staffEmail: string;
+export class Logdata{
+    id: any;
+    name: any;
+    message: any;
+    // date: any;
 }

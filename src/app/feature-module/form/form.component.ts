@@ -29,7 +29,7 @@ export class FormComponent implements OnInit {
     ngOnInit() {
         this.menuItems = [
             // {label:'Create Ticket', url:'/help-desk/create'},
-            { label: 'Create Ticket', url: '/help-desk/edit/:id' }
+            { label: 'Create Ticket' }
         ];
         this.home = { icon: 'pi pi-home', url: '#' };
 

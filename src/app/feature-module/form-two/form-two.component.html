@@ -3,10 +3,121 @@
 </div>
 
 <div class="card m-2">
-    <h5 class="card-header">Edit Ticket</h5>
+
+    <div class="card-header">
+
+        <table class="header">
+            <tr>
+                <td>
+                    <h5>Edit Ticket</h5>
+                </td>
+                <td>
+                    <div class="header-button">
+                        <button pButton class="btn btn-primary" [disabled]="!registerForm.valid" [hidden]="!isCloseBtnVisible"
+                            type="submit" (click)="onSubmit(data.id)" label={{buttonlable}}></button>
+
+                        <button pButton (click)="onClose(data.id)" [disabled]="!registerForm.valid" class="button btn btn-primary" [hidden]="!isButtonVisible"
+                            type="button" label="Close"></button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
     <div class="card-body">
         <form [formGroup]="registerForm">
-            <div class="form-group row">
+
+            <table class="tableview">
+                <tr>
+                    <td>
+                        <label>Tickets Number:</label>
+                    </td>
+                    <td>
+                        <span class="ticketNum-badge">{{data.ticketNum}}</span>
+                    </td>
+                    <td>
+                        <label>Status:</label>
+                    </td>
+                    <td>
+                        <span [class]="'customer-badge status-' + data.status">{{data.status}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Staff Name:</label>
+                    </td>
+                    <td>
+                        <label>{{data.staffName}}</label>
+                    </td>
+                    <td>
+                        <label>Ticket Created Date:</label>
+                    </td>
+                    <td>
+                        <label>{{data.createdDate}}</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Program * :</label>
+                    </td>
+                    <td>
+                        <select class="custom-select form-control"
+                            formControlName="programID" [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
+                            <option value=""></option>
+                            <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label>Staff Email:</label>
+                    </td>
+                    <td>
+                        <label>{{data.email}}</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Notes * :</label>
+                    </td>
+                    <td>
+                        <textarea class="textarea" rows="5" cols="10" pInputTextarea formControlName="notes"
+                            [ngClass]="{ 'is-invalid': submitted && f.notes.errors }" class="form-control"></textarea>
+                        <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+                            <div *ngIf="f.notes.errors.required">Required</div>
+                        </div>
+                    </td>
+                    <td>
+                        <label>Updated Date:</label>
+                    </td>
+                    <td>
+                        <label>{{currentDate}}</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Attachment:</label>
+                    </td>
+                    <td>
+                        <p-fileUpload name="demo[]" url="./upload.php" multiple="multiple" accept="image/*"
+                            maxFileSize="1000000">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} -
+                                        {{file.size}} bytes
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </td>
+                </tr>
+
+            </table>
+
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 ">Tickets Number:</label>
                 <label class="ticketNum col-sm-4">{{data.ticketNum}}</label>
 
@@ -14,9 +125,9 @@
                 <div class="col-sm-4">
                     <span [class]="'customer-badge status-' + data.status">{{data.status}}</span>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Staff Name:</label>
                 <label class="col-sm-4 col-form-label">{{data.staffName}}</label>
 
@@ -24,53 +135,51 @@
                 <div class="col-sm-4">
                     <label>{{data.createdDate}}</label>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Program * :</label>
                 <div class="col-sm-4">
-                    <select class="custom-select" [(ngModel)]="helpdeskProgramID"
-                        formControlName="programID" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
+                    <select class="custom-select" [(ngModel)]="helpdeskProgramID" formControlName="programID"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
                         <option value="{{data.programID}}">{{data.name}}</option>
                         <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
-                    </select>
-<!-- 
+                    </select> -->
+            <!-- 
                     <div *ngIf="submitted && f.programID.errors" class="invalid-feedback">
                         <div *ngIf="f.programID.errors.required">Required</div>
                     </div> -->
-                </div>
+            <!-- </div> -->
 
-                <label class="col-sm-2 col-form-label">Staff Email:</label>
+            <!-- <label class="col-sm-2 col-form-label">Staff Email:</label>
                 <div class="col-sm-4">
                     <label>{{data.email}}</label>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-6 col-form-label">Notes * :</label>
 
                 <label class="col-sm-2 col-form-label">Updated Date:</label>
                 <div class="col-sm-4">
                     <label>{{currentDate}}</label>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <!-- <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
+            <!-- <div class="form-group row">
+                <div class="col-sm-6"> -->
+            <!-- <textarea rows="5" cols="50" pInputTextarea formControlName="notes"
                          class="form-control">wqw</textarea> -->
 
-                    <textarea [(ngModel)]="helpdeskNotes" rows="5" cols="50"
-                        pInputTextarea>{{data.notes}}</textarea>
+            <!-- <textarea [(ngModel)]="helpdeskNotes" rows="5" cols="50" pInputTextarea>{{data.notes}}</textarea> -->
 
-                    <!-- <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+            <!-- <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
                         <div *ngIf="f.notes.errors.required">Required</div>
                     </div> -->
-                </div>
-            </div>
+            <!-- </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Attachment:</label>
                 <div class="col-sm-4">
                     <p-fileUpload name="demo[]" url="./upload.php" multiple="multiple" accept="image/*"
@@ -84,16 +193,17 @@
                         </ng-template>
                     </p-fileUpload>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <div class="col-sm-8">
                 </div>
                 <button class="col-sm-4" pButton class="btn btn-primary" [disabled]="!registerForm.valid" type="submit"
                     (click)="onSubmit(data.id)" label={{buttonlable}}></button>
 
-                <button pButton (click)="onClose(data.id)" class="button" [hidden]="!isButtonVisible" type="button" label="Close"></button>
-            </div>
+                <button pButton (click)="onClose(data.id)" class="button" [hidden]="!isButtonVisible" type="button"
+                    label="Close"></button>
+            </div> -->
         </form>
     </div>
 </div>
@@ -103,13 +213,14 @@
     <div class="contant-body card-body">
         <div class="form-group row">
             <div class="col-sm-12">
-                <textarea [(ngModel)]="issuelog" class="textarea" name="notes" rows="5" cols="100" autoResize="autoResize"
-                    placeholder="Write Somthing..." pInputTextarea> </textarea>
+                <textarea [(ngModel)]="issuelog" class="textarea" name="notes" rows="5" cols="100"
+                    autoResize="autoResize" placeholder="Write Somthing..." pInputTextarea> </textarea>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-4">
-                <button pButton type="button" (click)="onSubmitLog()" label="Save" class="ui-button-raised ui-button-success"></button>
+                <button pButton type="button" (click)="onSubmitLog(data)" label="Save"
+                    class="ui-button-raised ui-button-success"></button>
             </div>
         </div>
     </div>
@@ -118,7 +229,7 @@
 <div class="card m-2">
     <div class="card-body">
         <div class="card m-2" *ngFor="let log of LogData">
-            <div class="contant" >
+            <div class="contant">
                 <div class="form-group row m-2">
                     <label class="col-sm-6 col-form-label">{{log.name}}</label>
                     <label class="date col-form-label col-sm-6">{{log.createdDate}}</label>

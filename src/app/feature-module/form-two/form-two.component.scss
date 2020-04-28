@@ -42,21 +42,31 @@
         color: #fff;
     }
 }
-.button{
-    margin-left: 10px;
+.ticketNum-badge{
+    background-color: #6699cc;
+    font-size: large;
+    color: #fff;
+    padding: 10px;
 }
-.contant-body{
-    background-color: #f8f9fa;
+.tableview{
+    width: 100%;
+    margin: 20px;
+}
+.tableview tr > td {
+    padding-top: 40px;
+}
+.custom-select{
+    width: 50%;
 }
 .textarea{
+    width: 50%;
+}
+.header{
     width: 100%;
 }
-.contant{
-    background-color: #f8f9fa;
+.header-button{
+    text-align: right;
 }
-.date{
-text-align: right;
-}
-.ticketNum{
-font-size: x-large;
+.button{
+margin-left: 20px;
 }

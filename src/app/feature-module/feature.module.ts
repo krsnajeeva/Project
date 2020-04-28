@@ -15,6 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormTwoComponent } from './form-two/form-two.component';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
         BrowserModule,
         FormsModule,
         RouterModule,
-        BreadcrumbModule
+        BreadcrumbModule,
+        TooltipModule
     ],
     exports: [
         HelpDeskListViewComponent,

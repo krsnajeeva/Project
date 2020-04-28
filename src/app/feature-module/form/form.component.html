@@ -3,11 +3,132 @@
 </div>
 
 <div class="card m-2">
-    <h5 class="card-header">Create Ticket</h5>
+    <div class="card-header">
+        <!-- <div style="text-align: left;">
+            <h5>Create Ticket</h5>
+        </div> -->
+        <table class="header">
+            <tr>
+                <td>
+                    <h5>Create Ticket</h5>
+                </td>
+                <td>
+                    <div style="text-align: right;">
+                        <button class="col-sm-4" pTooltip="Please submit your form" pButton class="btn btn-primary" [disabled]="!registerForm.valid" type="submit"
+                            (click)="onSubmit(ticketNumber)" label=Submit></button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- <div style="text-align: right;">
+            <button class="col-sm-4" pButton class="btn btn-primary" [disabled]="!registerForm.valid" type="submit"
+                (click)="onSubmit(ticketNumber)" label=Submit></button>
+        </div> -->
+    </div>
     <div class="card-body">
         <form [formGroup]="registerForm">
 
-            <div class="form-group row">
+            <table class="tableview">
+                <tr>
+                    <td>
+                        <label>Tickets Number:</label>
+                    </td>
+                    <td>
+                        <span class="ticketNum-badge">{{ticketNumber}}</span>
+                    </td>
+                    <td>
+                        <label>Status:</label>
+                    </td>
+                    <td>
+                        <span [class]="'customer-badge status-' + 'New'">New</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Staff Name:</label>
+                    </td>
+                    <td>
+                        <label>Krishna</label>
+                    </td>
+                    <td>
+                        <label>Ticket Created Date:</label>
+                    </td>
+                    <td>
+                        <label>{{jstoday}}</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Program * :</label>
+                    </td>
+                    <td>
+                        <select class="custom-select form-control" formControlName="programID"
+                            [ngClass]="{ 'is-invalid': submitted && f.programID.errors }">
+                            <option value="">Choose..</option>
+                            <option *ngFor="let name of namelist" value={{name.programID}}>{{name.name}}</option>
+                        </select>
+
+                        <div *ngIf="submitted && f.programID.errors" class="invalid-feedback">
+                            <div *ngIf="f.programID.errors.required">Required</div>
+                        </div>
+                    </td>
+                    <td>
+                        <label>Staff Email:</label>
+                    </td>
+                    <td>
+                        <label>Krishna@gmail.com</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Notes * :</label>
+                    </td>
+                    <td>
+                        <textarea class="textarea" rows="5" cols="10" pInputTextarea formControlName="notes"
+                            [ngClass]="{ 'is-invalid': submitted && f.notes.errors }" class="form-control"></textarea>
+                        <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+                            <div *ngIf="f.notes.errors.required">Required</div>
+                        </div>
+                    </td>
+                    <td>
+                        <label>Updated Date:</label>
+                    </td>
+                    <td>
+                        <label>{{jstoday}}</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Attachment:</label>
+                    </td>
+                    <td>
+                        <p-fileUpload name="demo[]" url="./upload.php" multiple="multiple" accept="image/*"
+                            maxFileSize="1000000">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} -
+                                        {{file.size}} bytes
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </td>
+                    <!-- <td>
+                        <label>Ticket Created Date:</label>
+                    </td>
+                    <td>
+                        <label>{{jstoday}}</label>
+                    </td> -->
+                </tr>
+
+            </table>
+
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 ">Tickets Number:</label>
                 <label id="tno" class="col-sm-4">{{ticketNumber}}</label>
 
@@ -15,9 +136,9 @@
                 <div class="col-sm-4">
                     <span [class]="'customer-badge status-' + 'New'">New</span>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Staff Name:</label>
                 <label class="col-sm-4 col-form-label">Krishna</label>
 
@@ -25,9 +146,9 @@
                 <div class="col-sm-4">
                     <label>{{jstoday}}</label>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Program * :</label>
                 <div class="col-sm-4">
                     <select class="custom-select" formControlName="programID" class="form-control"
@@ -45,9 +166,9 @@
                 <div class="col-sm-4">
                     <label>Krishna@gmail.com</label>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-6 col-form-label">Notes * :</label>
 
                 <label class="col-sm-2 col-form-label">Updated Date:</label>
@@ -64,9 +185,9 @@
                         <div *ngIf="f.notes.errors.required">Required</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Attachment:</label>
                 <div class="col-sm-4">
                     <p-fileUpload name="demo[]" url="./upload.php" multiple="multiple" accept="image/*"
@@ -80,15 +201,15 @@
                         </ng-template>
                     </p-fileUpload>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <div class="col-sm-8">
-                </div>
+                </div> -->
 
-                <button class="col-sm-4" pButton class="btn btn-primary" [disabled]="!registerForm.valid" type="submit"
-                    (click)="onSubmit(ticketNumber)" label=Submit></button>
-            </div>
+                <!-- <button class="col-sm-4" pButton class="btn btn-primary" [disabled]="!registerForm.valid" type="submit"
+                    (click)="onSubmit(ticketNumber)" label=Submit></button> -->
+            <!-- </div> -->
         </form>
 
     </div>

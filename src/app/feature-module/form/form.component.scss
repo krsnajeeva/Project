@@ -9,6 +9,7 @@
     &.status-New {
         background-color: #ff6633;
         color: #fff;
+        font-size: large;
     }
 
     &.status-InProgress {
@@ -30,4 +31,26 @@
         background-color: #6699cc;
         color: #fff;
     }
+}
+.ticketNum-badge{
+    background-color: #6699cc;
+    font-size: large;
+    color: #fff;
+    padding: 10px;
+}
+.tableview{
+    width: 100%;
+    margin: 20px;
+}
+.tableview tr > td {
+    padding-top: 40px;
+}
+.custom-select{
+    width: 50%;
+}
+.textarea{
+    width: 50%;
+}
+.header{
+    width: 100%;
 }
