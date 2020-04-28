@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProductModel } from './ProductModel';
+import { ProductModel, LogModel } from './ProductModel';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -38,6 +38,10 @@ export class ProductService {
 
   addHelpdesk(product: ProductModel) {
     return this.http.post(this.baseurl + '/post', product);
+  }
+
+  addHelpdeskLog(product: LogModel) {
+    return this.http.post(this.baseurl + '/createlog', product);
   }
 
   deleteHelpdesk(product: ProductModel) {

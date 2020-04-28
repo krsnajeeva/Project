@@ -11,3 +11,10 @@ export class ProductModel {
     status: any;
     programID: any;
 }
+
+export class LogModel {
+    id: any;
+    name: any;
+    message: any;
+    // date: any;
+}

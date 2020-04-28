@@ -46,6 +46,7 @@ var productControllergetall = require('./Controller/ProductControllerGetapi')();
 var ProductControllergetone = require('./Controller/ProductControllerGetone')();
 var ProductControllerGetLastID = require('./Controller/ProductControllerGetLastID')();
 var ProductControllerGetLog = require('./Controller/ProductControllerGetLog')();
+var ProductControllerCreateLog = require('./Controller/ProductControllerCreateLog')();
 
 // app.get("/product",function(request,response)
 // {
@@ -66,6 +67,8 @@ app.use("/api/name/post/id",productControllerput)
 app.use("/api/name/delete/id",productControllerdelete)
 
 app.use("/api/name/one/id",ProductControllergetone)
+
+app.use("/api/name/createlog",ProductControllerCreateLog)
 
 app.listen(port, function () {
     var datetime = new Date();
