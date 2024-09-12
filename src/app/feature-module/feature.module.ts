@@ -13,12 +13,15 @@ import {CardModule} from 'primeng/card';
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
+import { RouterModule } from '@angular/router';
+import { FormTwoComponent } from './form-two/form-two.component';
 
 
 @NgModule({
     declarations: [
         HelpDeskListViewComponent,
-        FormComponent
+        FormComponent,
+        FormTwoComponent
     ],
     imports: [
         TableModule,
@@ -32,11 +35,13 @@ import { FormsModule } from "@angular/forms";
         CardModule,
         ReactiveFormsModule,
         BrowserModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ],
     exports: [
         HelpDeskListViewComponent,
-        FormComponent
+        FormComponent,
+        FormTwoComponent
     ],
     providers: [
         TableModule
